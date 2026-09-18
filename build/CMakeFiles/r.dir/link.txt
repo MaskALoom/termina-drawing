@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/r.dir/src/main.cpp.o -o r   -L/usr/local/lib  -Wl,-rpath,/usr/local/lib -lcjson /usr/local/lib/libraylib.a -lm 

@@ -1,0 +1,3 @@
+/home/loom/Documents/C Projects/TerminaDrawing/build/CMakeFiles/r.dir
+/home/loom/Documents/C Projects/TerminaDrawing/build/CMakeFiles/edit_cache.dir
+/home/loom/Documents/C Projects/TerminaDrawing/build/CMakeFiles/rebuild_cache.dir
