@@ -93,6 +93,7 @@ r_EXTERNAL_OBJECTS =
 r : CMakeFiles/r.dir/src/main.cpp.o
 r : CMakeFiles/r.dir/build.make
 r : /usr/local/lib/libraylib.a
+r : /usr/local/lib/libSDL3.so.0.3.0
 r : CMakeFiles/r.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/home/loom/Documents/C Projects/TerminaDrawing/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable r"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/r.dir/link.txt --verbose=$(VERBOSE)
