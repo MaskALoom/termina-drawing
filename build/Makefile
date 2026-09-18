@@ -129,29 +129,101 @@ r/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/r.dir/build.make CMakeFiles/r.dir/build
 .PHONY : r/fast
 
-src/main.o: src/main.cpp.o
-.PHONY : src/main.o
+src/camera.o: src/camera.cpp.o
+.PHONY : src/camera.o
 
 # target to build an object file
-src/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/r.dir/build.make CMakeFiles/r.dir/src/main.cpp.o
-.PHONY : src/main.cpp.o
+src/camera.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/r.dir/build.make CMakeFiles/r.dir/src/camera.cpp.o
+.PHONY : src/camera.cpp.o
 
-src/main.i: src/main.cpp.i
-.PHONY : src/main.i
+src/camera.i: src/camera.cpp.i
+.PHONY : src/camera.i
 
 # target to preprocess a source file
-src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/r.dir/build.make CMakeFiles/r.dir/src/main.cpp.i
-.PHONY : src/main.cpp.i
+src/camera.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/r.dir/build.make CMakeFiles/r.dir/src/camera.cpp.i
+.PHONY : src/camera.cpp.i
 
-src/main.s: src/main.cpp.s
-.PHONY : src/main.s
+src/camera.s: src/camera.cpp.s
+.PHONY : src/camera.s
 
 # target to generate assembly for a file
-src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/r.dir/build.make CMakeFiles/r.dir/src/main.cpp.s
-.PHONY : src/main.cpp.s
+src/camera.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/r.dir/build.make CMakeFiles/r.dir/src/camera.cpp.s
+.PHONY : src/camera.cpp.s
+
+src/drawManager.o: src/drawManager.cpp.o
+.PHONY : src/drawManager.o
+
+# target to build an object file
+src/drawManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/r.dir/build.make CMakeFiles/r.dir/src/drawManager.cpp.o
+.PHONY : src/drawManager.cpp.o
+
+src/drawManager.i: src/drawManager.cpp.i
+.PHONY : src/drawManager.i
+
+# target to preprocess a source file
+src/drawManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/r.dir/build.make CMakeFiles/r.dir/src/drawManager.cpp.i
+.PHONY : src/drawManager.cpp.i
+
+src/drawManager.s: src/drawManager.cpp.s
+.PHONY : src/drawManager.s
+
+# target to generate assembly for a file
+src/drawManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/r.dir/build.make CMakeFiles/r.dir/src/drawManager.cpp.s
+.PHONY : src/drawManager.cpp.s
+
+src/mouse.o: src/mouse.cpp.o
+.PHONY : src/mouse.o
+
+# target to build an object file
+src/mouse.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/r.dir/build.make CMakeFiles/r.dir/src/mouse.cpp.o
+.PHONY : src/mouse.cpp.o
+
+src/mouse.i: src/mouse.cpp.i
+.PHONY : src/mouse.i
+
+# target to preprocess a source file
+src/mouse.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/r.dir/build.make CMakeFiles/r.dir/src/mouse.cpp.i
+.PHONY : src/mouse.cpp.i
+
+src/mouse.s: src/mouse.cpp.s
+.PHONY : src/mouse.s
+
+# target to generate assembly for a file
+src/mouse.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/r.dir/build.make CMakeFiles/r.dir/src/mouse.cpp.s
+.PHONY : src/mouse.cpp.s
+
+src/newMain.o: src/newMain.cpp.o
+.PHONY : src/newMain.o
+
+# target to build an object file
+src/newMain.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/r.dir/build.make CMakeFiles/r.dir/src/newMain.cpp.o
+.PHONY : src/newMain.cpp.o
+
+src/newMain.i: src/newMain.cpp.i
+.PHONY : src/newMain.i
+
+# target to preprocess a source file
+src/newMain.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/r.dir/build.make CMakeFiles/r.dir/src/newMain.cpp.i
+.PHONY : src/newMain.cpp.i
+
+src/newMain.s: src/newMain.cpp.s
+.PHONY : src/newMain.s
+
+# target to generate assembly for a file
+src/newMain.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/r.dir/build.make CMakeFiles/r.dir/src/newMain.cpp.s
+.PHONY : src/newMain.cpp.s
 
 # Help Target
 help:
@@ -162,9 +234,18 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... r"
-	@echo "... src/main.o"
-	@echo "... src/main.i"
-	@echo "... src/main.s"
+	@echo "... src/camera.o"
+	@echo "... src/camera.i"
+	@echo "... src/camera.s"
+	@echo "... src/drawManager.o"
+	@echo "... src/drawManager.i"
+	@echo "... src/drawManager.s"
+	@echo "... src/mouse.o"
+	@echo "... src/mouse.i"
+	@echo "... src/mouse.s"
+	@echo "... src/newMain.o"
+	@echo "... src/newMain.i"
+	@echo "... src/newMain.s"
 .PHONY : help
 
 
