@@ -50,12 +50,15 @@ CMakeFiles/r.dir/src/camera.cpp.o: /home/loom/Documents/C\ Projects/TerminaDrawi
   /usr/include/c++/13/bits/requires_hosted.h \
   /usr/include/c++/13/bits/std_abs.h \
   /usr/include/c++/13/bits/stl_algobase.h \
+  /usr/include/c++/13/bits/stl_bvector.h \
   /usr/include/c++/13/bits/stl_construct.h \
   /usr/include/c++/13/bits/stl_function.h \
   /usr/include/c++/13/bits/stl_iterator.h \
   /usr/include/c++/13/bits/stl_iterator_base_funcs.h \
   /usr/include/c++/13/bits/stl_iterator_base_types.h \
   /usr/include/c++/13/bits/stl_pair.h \
+  /usr/include/c++/13/bits/stl_uninitialized.h \
+  /usr/include/c++/13/bits/stl_vector.h \
   /usr/include/c++/13/bits/streambuf.tcc \
   /usr/include/c++/13/bits/streambuf_iterator.h \
   /usr/include/c++/13/bits/string_view.tcc \
@@ -63,6 +66,7 @@ CMakeFiles/r.dir/src/camera.cpp.o: /home/loom/Documents/C\ Projects/TerminaDrawi
   /usr/include/c++/13/bits/uses_allocator.h \
   /usr/include/c++/13/bits/uses_allocator_args.h \
   /usr/include/c++/13/bits/utility.h \
+  /usr/include/c++/13/bits/vector.tcc \
   /usr/include/c++/13/cctype \
   /usr/include/c++/13/cerrno \
   /usr/include/c++/13/clocale \
@@ -95,6 +99,7 @@ CMakeFiles/r.dir/src/camera.cpp.o: /home/loom/Documents/C\ Projects/TerminaDrawi
   /usr/include/c++/13/tuple \
   /usr/include/c++/13/type_traits \
   /usr/include/c++/13/typeinfo \
+  /usr/include/c++/13/vector \
   /usr/include/ctype.h \
   /usr/include/endian.h \
   /usr/include/errno.h \
@@ -983,15 +988,11 @@ CMakeFiles/r.dir/src/mouse.cpp.o: /home/loom/Documents/C\ Projects/TerminaDrawin
 
 /home/loom/Documents/C\ Projects/TerminaDrawing/src/globals.cpp:
 
-/usr/include/c++/13/bits/vector.tcc:
+/home/loom/Documents/C\ Projects/TerminaDrawing/src/drawManager.cpp:
 
-/usr/include/c++/13/bits/stl_vector.h:
+/usr/local/include/SDL3/SDL_video.h:
 
-/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
-
-/usr/local/include/SDL3/SDL_close_code.h:
-
-/usr/include/x86_64-linux-gnu/bits/locale.h:
+/usr/include/x86_64-linux-gnu/bits/types/wint_t.h:
 
 /usr/include/c++/13/exception:
 
@@ -999,19 +1000,7 @@ CMakeFiles/r.dir/src/mouse.cpp.o: /home/loom/Documents/C\ Projects/TerminaDrawin
 
 /usr/include/c++/13/bits/basic_string.h:
 
-/usr/include/x86_64-linux-gnu/bits/long-double.h:
-
-/usr/include/c++/13/bits/uses_allocator_args.h:
-
-/usr/include/c++/13/bits/stl_uninitialized.h:
-
-/usr/include/c++/13/bits/new_allocator.h:
-
 /usr/include/x86_64-linux-gnu/bits/byteswap.h:
-
-/usr/include/c++/13/vector:
-
-/usr/local/include/SDL3/SDL_loadso.h:
 
 /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
 
@@ -1103,6 +1092,10 @@ CMakeFiles/r.dir/src/mouse.cpp.o: /home/loom/Documents/C\ Projects/TerminaDrawin
 
 /usr/local/include/SDL3/SDL_system.h:
 
+/usr/local/include/SDL3/SDL_loadso.h:
+
+/usr/include/c++/13/vector:
+
 /usr/include/c++/13/cstddef:
 
 /usr/include/c++/13/clocale:
@@ -1115,11 +1108,17 @@ CMakeFiles/r.dir/src/mouse.cpp.o: /home/loom/Documents/C\ Projects/TerminaDrawin
 
 /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
 
+/usr/include/c++/13/bits/vector.tcc:
+
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
 
 /usr/include/c++/13/bits/utility.h:
 
 /usr/include/c++/13/bits/stl_function.h:
+
+/usr/include/c++/13/bits/uses_allocator_args.h:
+
+/usr/include/x86_64-linux-gnu/bits/long-double.h:
 
 /usr/include/x86_64-linux-gnu/bits/floatn.h:
 
@@ -1152,6 +1151,10 @@ CMakeFiles/r.dir/src/mouse.cpp.o: /home/loom/Documents/C\ Projects/TerminaDrawin
 /usr/include/c++/13/bits/exception_ptr.h:
 
 /usr/include/c++/13/bits/istream.tcc:
+
+/usr/include/c++/13/bits/stl_vector.h:
+
+/usr/local/include/SDL3/SDL_thread.h:
 
 /usr/include/c++/13/bits/cpp_type_traits.h:
 
@@ -1206,6 +1209,16 @@ CMakeFiles/r.dir/src/mouse.cpp.o: /home/loom/Documents/C\ Projects/TerminaDrawin
 /usr/include/c++/13/bits/stringfwd.h:
 
 /usr/include/c++/13/backward/binders.h:
+
+/usr/include/features.h:
+
+/usr/local/include/SDL3/SDL_properties.h:
+
+/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
+
+/usr/local/include/SDL3/SDL_time.h:
+
+/usr/include/c++/13/bits/string_view.tcc:
 
 /usr/include/c++/13/bits/hash_bytes.h:
 
@@ -1269,6 +1282,10 @@ CMakeFiles/r.dir/src/mouse.cpp.o: /home/loom/Documents/C\ Projects/TerminaDrawin
 
 /usr/include/c++/13/bits/locale_classes.tcc:
 
+/home/loom/Documents/C\ Projects/TerminaDrawing/include/mouse.hpp:
+
+/usr/include/c++/13/bits/invoke.h:
+
 /usr/include/x86_64-linux-gnu/bits/cpu-set.h:
 
 /usr/include/c++/13/bits/ostream_insert.h:
@@ -1283,17 +1300,15 @@ CMakeFiles/r.dir/src/mouse.cpp.o: /home/loom/Documents/C\ Projects/TerminaDrawin
 
 /usr/include/c++/13/bits/stl_construct.h:
 
-/home/loom/Documents/C\ Projects/TerminaDrawing/src/drawManager.cpp:
+/usr/include/c++/13/bits/new_allocator.h:
 
-/usr/include/features.h:
+/usr/include/c++/13/bits/stl_uninitialized.h:
 
-/usr/local/include/SDL3/SDL_properties.h:
+/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
 
-/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
+/usr/include/x86_64-linux-gnu/bits/locale.h:
 
-/usr/local/include/SDL3/SDL_time.h:
-
-/usr/include/c++/13/bits/string_view.tcc:
+/usr/local/include/SDL3/SDL_close_code.h:
 
 /usr/include/x86_64-linux-gnu/bits/sched.h:
 
@@ -1481,10 +1496,6 @@ CMakeFiles/r.dir/src/mouse.cpp.o: /home/loom/Documents/C\ Projects/TerminaDrawin
 
 /usr/local/include/SDL3/SDL_power.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/wint_t.h:
-
-/usr/local/include/SDL3/SDL_video.h:
-
 /usr/include/x86_64-linux-gnu/gnu/stubs.h:
 
 /usr/local/include/SDL3/SDL_process.h:
@@ -1499,10 +1510,4 @@ CMakeFiles/r.dir/src/mouse.cpp.o: /home/loom/Documents/C\ Projects/TerminaDrawin
 
 /usr/local/include/SDL3/SDL_surface.h:
 
-/usr/local/include/SDL3/SDL_thread.h:
-
 /usr/local/include/SDL3/SDL_version.h:
-
-/usr/include/c++/13/bits/invoke.h:
-
-/home/loom/Documents/C\ Projects/TerminaDrawing/include/mouse.hpp:

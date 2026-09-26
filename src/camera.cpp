@@ -1,29 +1,39 @@
 #include "../include/camera.hpp"
 #include <iostream>
 
+void Camera::Init(void){
+    float baseValue = 1.0f;
+    for(int i = 0; i < 100; ++i){
+        zoomValues.push_back(baseValue);
+        baseValue += baseValue * 0.8f;
+    }
+}
+
 void Camera::AlterZoom(void){
-    /*
     if(IsKeyPressed(SDLK_Q)){
-        zoom -= 0.1f;
+        --zoomIndex;
+        if(zoomIndex < 0) zoomIndex = 0;
+        zoomBaseValue = zoomValues[zoomIndex];
     }
     else if(IsKeyPressed(SDLK_W)){
-        zoom += 0.1f;
+        ++zoomIndex;
+        if(zoomIndex > zoomIndexMax) zoomIndex = zoomIndexMax;
+        zoomBaseValue = zoomValues[zoomIndex];
     }
+    /*
+    if(IsKeyPressed(SDLK_Q)){
+        zoomBaseValue -= 10.0f;
+        std::cout << "ZOOM: " << zoomBaseValue << std::endl;
+    }
+    else if(IsKeyPressed(SDLK_W)){
+        zoomBaseValue += 10.0f;
+        std::cout << "ZOOM: " << zoomBaseValue << std::endl;
+    }
+    if(zoomBaseValue <= 0.0f) zoom = 1.0f;
+    else if(zoomBaseValue >= 6000.0f) zoom = 6000.0f;
     */
-    const bool* keyboard = SDL_GetKeyboardState(nullptr);
-    if(keyboard[SDL_SCANCODE_Q]){
-        if(zoom == 0.5f) return;
-        state = CameraState::STATE_ZOOMING;
-        zoom = 0.5f;
-    }
-    else if(keyboard[SDL_SCANCODE_W]){
-        if(zoom == 1.5f) return;
-        state = CameraState::STATE_ZOOMING;
-        zoom = 1.5f;
-    }
 
-    if(zoom <= 0.0f) zoom = 0.05f;
-    else if(zoom >= 15.0f) zoom = 15.0f;
+    zoom = zoomBaseValue / 100.0f;
 }
 void Camera::MoveCamera(Vector2 difference){
     if(!IsKeyHeld(SDL_SCANCODE_SPACE)) return;

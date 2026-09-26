@@ -34,11 +34,9 @@ void DrawManager::Update(Camera& camera, Mouse& mouse){
     Vector2 squarePos = canvasPos;
 
     //Drawn square screen offset
-    //squarePos.x += WINDOW_WIDTH / 2.0f - squareSize.x / 2.0f;
-    //squarePos.y += WINDOW_HEIGHT / 2.0f - squareSize.y / 2.0f;
-
-    squarePos.x += WINDOW_WIDTH / 2.0f;
-    squarePos.y += WINDOW_HEIGHT / 2.0f;
+    //
+    squarePos.x += WINDOW_WIDTH / 2.0f - squareSize.x / 2.0f;
+    squarePos.y += WINDOW_HEIGHT / 2.0f - squareSize.y / 2.0f;
 
     CreateRect(squarePos.x, squarePos.y, squareSize.x, squareSize.y, RED);
 

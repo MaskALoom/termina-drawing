@@ -3,6 +3,7 @@
 
 #include <SDL3/SDL.h>
 #include "globals.hpp"
+#include <vector>
 
 enum class CameraState{
     STATE_ZOOMING = 0,
@@ -11,15 +12,20 @@ enum class CameraState{
 
 class Camera{
 private:
-public:
-    CameraState state = CameraState::STATE_NONE;
-
-    Vector2 pos = {0.0f, 0.0f};
     int width = 0;
     int height = 0;
 
+    float zoomBaseValue = 100.0f;
+
+    std::vector<float> zoomValues;
+    int zoomIndex = 8;
+    int zoomIndexMax = 100;
+public:
+    CameraState state = CameraState::STATE_NONE;
+    Vector2 pos = {0.0f, 0.0f};
     float zoom = 1.0f;
 
+    void Init(void);
     void AlterZoom(void);
     void MoveCamera(Vector2 difference);
 };

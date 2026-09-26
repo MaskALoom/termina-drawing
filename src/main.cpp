@@ -45,10 +45,11 @@ public:
         drawManager.renderer = renderer;
         drawManager.Init(2500, 2000, GetMonochromeColor((char)230));
         drawManager.CreateRect(100, 100, 200, 200, RED);
+        camera.Init();
     }
     void EventPollHandler(SDL_Event& event){
+        globalKeyPressed = SDLK_UNKNOWN;
         while(SDL_PollEvent(&event)){
-            if(event.type != SDL_EVENT_KEY_DOWN) globalKeyPressed = SDLK_UNKNOWN;
             if(event.type == SDL_EVENT_QUIT){
                 running = false;
             }
