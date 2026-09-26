@@ -19,11 +19,9 @@ public:
     int height = 0;
 
     float zoom = 1.0f;
-    bool flipActive = false;
 
     void AlterZoom(void);
-    void CameraFlip(void);
-   void MoveCamera(Vector2 difference);
+    void MoveCamera(Vector2 difference);
 };
 
 #endif

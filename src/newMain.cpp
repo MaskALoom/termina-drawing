@@ -43,8 +43,8 @@ int main(int argc, char** argv){
         return 1;
     }
     drawManager.renderer = renderer;
-    drawManager.CreateRect(0, 0, 200, 200, RED, camera);
-    //drawManager.CreateRect(200, 200, 200, 200, RED);
+    //drawManager.CreateRect(0, 0, 200, 200, RED, camera);
+    drawManager.CreateRect(100, 100, 200, 200, RED, camera);
     bool running = true;
     while(running){
         SDL_Event event;
@@ -52,16 +52,11 @@ int main(int argc, char** argv){
             if(event.type == SDL_EVENT_QUIT){
                 running = false;
             }
-            if(event.type == SDL_EVENT_KEY_DOWN){
-                if(event.key.key == SDLK_A){
-                    camera.CameraFlip();
-                }
-            }
         }
         drawManager.Update(camera);
         mouse.MouseUpdate();
         camera.AlterZoom();
-        drawManager.RectZoomAdjust(camera);
+        //drawManager.RectZoomAdjust(camera);
         camera.MoveCamera(mouse.GetMouseDifference());
 
         camera.state = CameraState::STATE_NONE;

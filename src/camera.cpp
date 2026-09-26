@@ -1,12 +1,6 @@
 #include "../include/camera.hpp"
 #include <iostream>
 
-void Camera::CameraFlip(void){
-    if(flipActive) flipActive = false;
-    else flipActive = true;
-
-    std::cout << "active or something?" << std::endl;
-}
 void Camera::AlterZoom(void){
     const bool* keyboard = SDL_GetKeyboardState(nullptr);
     //if(!keyboard[SDL_SCANCODE_Q] || !keyboard[SDL_SCANCODE_W]) return;
@@ -29,13 +23,7 @@ void Camera::MoveCamera(Vector2 difference){
     const bool* keyboard = SDL_GetKeyboardState(nullptr);
     if(!keyboard[SDL_SCANCODE_SPACE]) return;
 
-    if(flipActive){
-        pos.x += difference.x / zoom;
-    }
-    else{
-        pos.x -= difference.x / zoom;
-    }
-
+    pos.x -= difference.x / zoom;
     pos.y -= difference.y / zoom;
 
 }
