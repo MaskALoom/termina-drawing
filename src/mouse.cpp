@@ -7,7 +7,6 @@ void Mouse::MouseUpdate(void){
 Vector2 Mouse::GetMouseDifference(void){
     const bool* keyboard = SDL_GetKeyboardState(nullptr);
     if(keyboard[SDL_SCANCODE_SPACE]){
-        //if(!keyboard[SDL_SCANCODE_E]) return;
         float xDifference = pos.x - lastPos.x;
         float yDifference = pos.y - lastPos.y;
         

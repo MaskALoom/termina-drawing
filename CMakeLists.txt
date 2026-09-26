@@ -18,7 +18,7 @@ target_link_libraries(r PRIVATE raylib)
 target_link_libraries(r PRIVATE SDL3::SDL3)
 target_sources(r
     PRIVATE
-    src/newMain.cpp
+    src/main.cpp
     src/mouse.cpp
     src/camera.cpp
     src/drawManager.cpp

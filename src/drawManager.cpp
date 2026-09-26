@@ -3,9 +3,8 @@
 #include <SDL3/SDL_mouse.h>
 #include <iostream>
 
-void DrawManager::CreateRect(float x, float y, float width, float height, Color color, Camera& camera){
-    bool flipActive = false;
-    Rectangle rect = {{x, y}, {width, height}, color, flipActive};
+void DrawManager::CreateRect(float x, float y, float width, float height, Color color){
+    Rectangle rect = {{x, y}, {width, height}, color};
     rects.push_back(rect);
 }
 void DrawManager::Update(Camera& camera){
@@ -21,13 +20,10 @@ void DrawManager::Update(Camera& camera){
     Vector2 squarePos = canvasPos;
     squarePos.x += WINDOW_WIDTH / 2.0f;
     squarePos.y += WINDOW_HEIGHT / 2.0f;
-    CreateRect(squarePos.x, squarePos.y, squareSize.x, squareSize.y, RED, camera);
+    CreateRect(squarePos.x, squarePos.y, squareSize.x, squareSize.y, RED);
 
     std::cout << "POS X: " << squarePos.x << " -- POS Y: " << squarePos.y << std::endl;
     std::cout << "Size: " << rects.size() << std::endl;
-}
-void DrawManager::RectZoomAdjust(Camera& camera){
-    return;
 }
 void DrawManager::Draw(Camera& camera){
     for(auto rect : rects){

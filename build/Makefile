@@ -177,6 +177,30 @@ src/drawManager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/r.dir/build.make CMakeFiles/r.dir/src/drawManager.cpp.s
 .PHONY : src/drawManager.cpp.s
 
+src/main.o: src/main.cpp.o
+.PHONY : src/main.o
+
+# target to build an object file
+src/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/r.dir/build.make CMakeFiles/r.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
+
+src/main.i: src/main.cpp.i
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/r.dir/build.make CMakeFiles/r.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
+
+src/main.s: src/main.cpp.s
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/r.dir/build.make CMakeFiles/r.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
+
 src/mouse.o: src/mouse.cpp.o
 .PHONY : src/mouse.o
 
@@ -201,30 +225,6 @@ src/mouse.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/r.dir/build.make CMakeFiles/r.dir/src/mouse.cpp.s
 .PHONY : src/mouse.cpp.s
 
-src/newMain.o: src/newMain.cpp.o
-.PHONY : src/newMain.o
-
-# target to build an object file
-src/newMain.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/r.dir/build.make CMakeFiles/r.dir/src/newMain.cpp.o
-.PHONY : src/newMain.cpp.o
-
-src/newMain.i: src/newMain.cpp.i
-.PHONY : src/newMain.i
-
-# target to preprocess a source file
-src/newMain.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/r.dir/build.make CMakeFiles/r.dir/src/newMain.cpp.i
-.PHONY : src/newMain.cpp.i
-
-src/newMain.s: src/newMain.cpp.s
-.PHONY : src/newMain.s
-
-# target to generate assembly for a file
-src/newMain.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/r.dir/build.make CMakeFiles/r.dir/src/newMain.cpp.s
-.PHONY : src/newMain.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -240,12 +240,12 @@ help:
 	@echo "... src/drawManager.o"
 	@echo "... src/drawManager.i"
 	@echo "... src/drawManager.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
 	@echo "... src/mouse.o"
 	@echo "... src/mouse.i"
 	@echo "... src/mouse.s"
-	@echo "... src/newMain.o"
-	@echo "... src/newMain.i"
-	@echo "... src/newMain.s"
 .PHONY : help
 
 

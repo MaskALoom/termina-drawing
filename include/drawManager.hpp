@@ -21,9 +21,8 @@ private:
 public:
     SDL_Renderer* renderer;
 
-    void CreateRect(float x, float y, float width, float height, Color color, Camera& camera);
+    void CreateRect(float x, float y, float width, float height, Color color);
     void Update(Camera& camera);
-    void RectZoomAdjust(Camera& camera);
     void Draw(Camera& camera);
 };
 

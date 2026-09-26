@@ -3,8 +3,6 @@
 
 void Camera::AlterZoom(void){
     const bool* keyboard = SDL_GetKeyboardState(nullptr);
-    //if(!keyboard[SDL_SCANCODE_Q] || !keyboard[SDL_SCANCODE_W]) return;
-
     if(keyboard[SDL_SCANCODE_Q]){
         if(zoom == 0.5f) return;
         state = CameraState::STATE_ZOOMING;
@@ -25,7 +23,6 @@ void Camera::MoveCamera(Vector2 difference){
 
     pos.x -= difference.x / zoom;
     pos.y -= difference.y / zoom;
-
 }
 
 

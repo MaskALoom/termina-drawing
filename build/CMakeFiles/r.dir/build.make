@@ -69,19 +69,19 @@ include CMakeFiles/r.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/r.dir/flags.make
 
-CMakeFiles/r.dir/src/newMain.cpp.o: CMakeFiles/r.dir/flags.make
-CMakeFiles/r.dir/src/newMain.cpp.o: /home/loom/Documents/C\ Projects/TerminaDrawing/src/newMain.cpp
-CMakeFiles/r.dir/src/newMain.cpp.o: CMakeFiles/r.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/loom/Documents/C Projects/TerminaDrawing/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/r.dir/src/newMain.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/r.dir/src/newMain.cpp.o -MF CMakeFiles/r.dir/src/newMain.cpp.o.d -o CMakeFiles/r.dir/src/newMain.cpp.o -c "/home/loom/Documents/C Projects/TerminaDrawing/src/newMain.cpp"
+CMakeFiles/r.dir/src/main.cpp.o: CMakeFiles/r.dir/flags.make
+CMakeFiles/r.dir/src/main.cpp.o: /home/loom/Documents/C\ Projects/TerminaDrawing/src/main.cpp
+CMakeFiles/r.dir/src/main.cpp.o: CMakeFiles/r.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/loom/Documents/C Projects/TerminaDrawing/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/r.dir/src/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/r.dir/src/main.cpp.o -MF CMakeFiles/r.dir/src/main.cpp.o.d -o CMakeFiles/r.dir/src/main.cpp.o -c "/home/loom/Documents/C Projects/TerminaDrawing/src/main.cpp"
 
-CMakeFiles/r.dir/src/newMain.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/r.dir/src/newMain.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/loom/Documents/C Projects/TerminaDrawing/src/newMain.cpp" > CMakeFiles/r.dir/src/newMain.cpp.i
+CMakeFiles/r.dir/src/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/r.dir/src/main.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/loom/Documents/C Projects/TerminaDrawing/src/main.cpp" > CMakeFiles/r.dir/src/main.cpp.i
 
-CMakeFiles/r.dir/src/newMain.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/r.dir/src/newMain.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/loom/Documents/C Projects/TerminaDrawing/src/newMain.cpp" -o CMakeFiles/r.dir/src/newMain.cpp.s
+CMakeFiles/r.dir/src/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/r.dir/src/main.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/loom/Documents/C Projects/TerminaDrawing/src/main.cpp" -o CMakeFiles/r.dir/src/main.cpp.s
 
 CMakeFiles/r.dir/src/mouse.cpp.o: CMakeFiles/r.dir/flags.make
 CMakeFiles/r.dir/src/mouse.cpp.o: /home/loom/Documents/C\ Projects/TerminaDrawing/src/mouse.cpp
@@ -127,7 +127,7 @@ CMakeFiles/r.dir/src/drawManager.cpp.s: cmake_force
 
 # Object files for target r
 r_OBJECTS = \
-"CMakeFiles/r.dir/src/newMain.cpp.o" \
+"CMakeFiles/r.dir/src/main.cpp.o" \
 "CMakeFiles/r.dir/src/mouse.cpp.o" \
 "CMakeFiles/r.dir/src/camera.cpp.o" \
 "CMakeFiles/r.dir/src/drawManager.cpp.o"
@@ -135,7 +135,7 @@ r_OBJECTS = \
 # External object files for target r
 r_EXTERNAL_OBJECTS =
 
-r : CMakeFiles/r.dir/src/newMain.cpp.o
+r : CMakeFiles/r.dir/src/main.cpp.o
 r : CMakeFiles/r.dir/src/mouse.cpp.o
 r : CMakeFiles/r.dir/src/camera.cpp.o
 r : CMakeFiles/r.dir/src/drawManager.cpp.o
