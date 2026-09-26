@@ -122,6 +122,8 @@ CMakeFiles/r.dir/src/drawManager.cpp.o: \
  /usr/include/c++/13/bits/uses_allocator_args.h /usr/include/c++/13/tuple \
  /home/loom/Documents/C\ Projects/TerminaDrawing/src/../include/globals.hpp \
  /home/loom/Documents/C\ Projects/TerminaDrawing/src/../include/camera.hpp \
+ /home/loom/Documents/C\ Projects/TerminaDrawing/src/../include/mouse.hpp \
+ /home/loom/Documents/C\ Projects/TerminaDrawing/src/../include/mouse.hpp \
  /usr/include/c++/13/iostream /usr/include/c++/13/ostream \
  /usr/include/c++/13/ios /usr/include/c++/13/iosfwd \
  /usr/include/c++/13/bits/stringfwd.h /usr/include/c++/13/bits/postypes.h \

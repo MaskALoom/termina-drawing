@@ -33,9 +33,9 @@ CMakeFiles/r.dir/src/main.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
  /usr/local/include/SDL3/SDL_begin_code.h \
  /usr/local/include/SDL3/SDL_close_code.h \
- /usr/local/include/SDL3/SDL_init.h /usr/local/include/SDL3/SDL_events.h \
- /usr/local/include/SDL3/SDL_audio.h /usr/local/include/SDL3/SDL_endian.h \
- /usr/include/endian.h /usr/include/x86_64-linux-gnu/bits/endian.h \
+ /usr/local/include/SDL3/SDL_events.h /usr/local/include/SDL3/SDL_audio.h \
+ /usr/local/include/SDL3/SDL_endian.h /usr/include/endian.h \
+ /usr/include/x86_64-linux-gnu/bits/endian.h \
  /usr/include/x86_64-linux-gnu/bits/endianness.h \
  /usr/include/x86_64-linux-gnu/bits/byteswap.h \
  /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
@@ -56,6 +56,7 @@ CMakeFiles/r.dir/src/main.cpp.o: \
  /usr/local/include/SDL3/SDL_scancode.h \
  /usr/local/include/SDL3/SDL_video.h /usr/local/include/SDL3/SDL_mouse.h \
  /usr/local/include/SDL3/SDL_pen.h /usr/local/include/SDL3/SDL_touch.h \
+ /usr/local/include/SDL3/SDL_init.h \
  /usr/local/include/SDL3/SDL_oldnames.h \
  /usr/local/include/SDL3/SDL_render.h /usr/local/include/SDL3/SDL.h \
  /usr/local/include/SDL3/SDL_assert.h \
@@ -206,4 +207,5 @@ CMakeFiles/r.dir/src/main.cpp.o: \
  /home/loom/Documents/C\ Projects/TerminaDrawing/src/../include/globals.hpp \
  /home/loom/Documents/C\ Projects/TerminaDrawing/src/../include/mouse.hpp \
  /home/loom/Documents/C\ Projects/TerminaDrawing/src/../include/drawManager.hpp \
- /home/loom/Documents/C\ Projects/TerminaDrawing/src/../include/camera.hpp
+ /home/loom/Documents/C\ Projects/TerminaDrawing/src/../include/camera.hpp \
+ /home/loom/Documents/C\ Projects/TerminaDrawing/src/../include/mouse.hpp

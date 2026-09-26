@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/r.dir/src/camera.cpp.o.d"
   "CMakeFiles/r.dir/src/drawManager.cpp.o"
   "CMakeFiles/r.dir/src/drawManager.cpp.o.d"
+  "CMakeFiles/r.dir/src/globals.cpp.o"
+  "CMakeFiles/r.dir/src/globals.cpp.o.d"
   "CMakeFiles/r.dir/src/main.cpp.o"
   "CMakeFiles/r.dir/src/main.cpp.o.d"
   "CMakeFiles/r.dir/src/mouse.cpp.o"

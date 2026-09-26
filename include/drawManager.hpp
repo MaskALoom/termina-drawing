@@ -7,6 +7,7 @@
 
 #include "globals.hpp"
 #include "camera.hpp"
+#include "mouse.hpp"
 
 typedef struct{
     Vector2 pos;
@@ -21,10 +22,16 @@ private:
 public:
     SDL_Renderer* renderer;
 
+    float canvasWidth;
+    float canvasHeight;
+
+    void Init(float width, float height, Color color);
     void CreateRect(float x, float y, float width, float height, Color color);
-    void Update(Camera& camera);
+    void Update(Camera& camera, Mouse& mouse);
     void Draw(Camera& camera);
 };
+
+Color GetMonochromeColor(char value);
 
 #endif
 

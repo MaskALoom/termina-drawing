@@ -11,6 +11,7 @@ private:
 public:
     void MouseUpdate(void);
     Vector2 GetMouseDifference(void);
+    Vector2 GetMousePosition(void);
 };
 
 #endif
