@@ -77,8 +77,10 @@ CMakeFiles/r.dir/src/drawManager.cpp.o: \
  /usr/local/include/SDL3/SDL_system.h /usr/local/include/SDL3/SDL_time.h \
  /usr/local/include/SDL3/SDL_timer.h /usr/local/include/SDL3/SDL_tray.h \
  /usr/local/include/SDL3/SDL_version.h \
- /usr/local/include/SDL3/SDL_oldnames.h /usr/include/c++/13/vector \
- /usr/include/c++/13/bits/requires_hosted.h \
+ /usr/local/include/SDL3/SDL_oldnames.h \
+ /home/loom/Documents/C\ Projects/TerminaDrawing/src/../include/globals.hpp \
+ /home/loom/Documents/C\ Projects/TerminaDrawing/src/../include/camera.hpp \
+ /usr/include/c++/13/vector /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/cpu_defines.h \
@@ -120,8 +122,6 @@ CMakeFiles/r.dir/src/drawManager.cpp.o: \
  /usr/include/c++/13/bits/memory_resource.h /usr/include/c++/13/cstddef \
  /usr/include/c++/13/bits/uses_allocator.h \
  /usr/include/c++/13/bits/uses_allocator_args.h /usr/include/c++/13/tuple \
- /home/loom/Documents/C\ Projects/TerminaDrawing/src/../include/globals.hpp \
- /home/loom/Documents/C\ Projects/TerminaDrawing/src/../include/camera.hpp \
  /home/loom/Documents/C\ Projects/TerminaDrawing/src/../include/mouse.hpp \
  /home/loom/Documents/C\ Projects/TerminaDrawing/src/../include/mouse.hpp \
  /usr/include/c++/13/iostream /usr/include/c++/13/ostream \

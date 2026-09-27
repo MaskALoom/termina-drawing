@@ -43,12 +43,14 @@ public:
         }
 
         drawManager.renderer = renderer;
+        drawManager.camera = &camera;
         drawManager.Init(2500, 2000, GetMonochromeColor((char)230));
         drawManager.CreateRect(100, 100, 200, 200, RED);
         camera.Init();
     }
     void EventPollHandler(SDL_Event& event){
         globalKeyPressed = SDLK_UNKNOWN;
+        int motions = 0;
         while(SDL_PollEvent(&event)){
             if(event.type == SDL_EVENT_QUIT){
                 running = false;
@@ -56,13 +58,21 @@ public:
             else if(event.type == SDL_EVENT_KEY_DOWN){
                 globalKeyPressed = event.key.key;
             }
+            else if(event.type == SDL_EVENT_MOUSE_MOTION){
+                if(mouse.isDrawing) mouse.mousePathBuffer.push_back({event.motion.x, event.motion.y});
+                ++motions;
+            }
+        }
+        if(motions > 0){
+            //std::cout << "MOTIONS: " << motions << std::endl;
         }
     }
     void Update(void){
+        mouse.MouseUpdate();
+
         SDL_Event event;
         EventPollHandler(event);
-        drawManager.Update(camera, mouse);
-        mouse.MouseUpdate();
+        drawManager.Update(mouse);
         camera.AlterZoom();
         camera.MoveCamera(mouse.GetMouseDifference());
 
@@ -71,7 +81,7 @@ public:
     void Draw(void){
         SDL_SetRenderDrawColor(renderer, 25, 25, 25, 255);
         SDL_RenderClear(renderer);
-        drawManager.Draw(camera);
+        drawManager.Draw();
         SDL_RenderPresent(renderer);
     }
 };

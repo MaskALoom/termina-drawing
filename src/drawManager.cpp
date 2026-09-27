@@ -18,15 +18,12 @@ void DrawManager::Init(float width, float height, Color color){
 }
 
 void DrawManager::CreateRect(float x, float y, float width, float height, Color color){
-    Rectangle rect = {{x, y}, {width, height}, color};
+    DrawRectData rect = {{x, y}, {width, height}, color};
     rects.push_back(rect);
 }
-void DrawManager::Update(Camera& camera, Mouse& mouse){
-    if(!IsKeyHeld(SDL_SCANCODE_R)) return;
-
-    //Converstion from screen postion to canvas space relative to camera postion and zoom
-    float canvasPosX = (mouse.GetMousePosition().x - WINDOW_WIDTH / 2.0f) / camera.zoom + camera.pos.x;
-    float canvasPosY = (mouse.GetMousePosition().y - WINDOW_HEIGHT / 2.0f) / camera.zoom + camera.pos.y;
+Vector2 DrawManager::ConvertPosition(float posX, float posY){
+    float canvasPosX = (posX - WINDOW_WIDTH / 2.0f) / camera->zoom + camera->pos.x;
+    float canvasPosY = (posY - WINDOW_HEIGHT / 2.0f) / camera->zoom + camera->pos.y;
 
     Vector2 canvasPos = {canvasPosX, canvasPosY};
 
@@ -34,37 +31,78 @@ void DrawManager::Update(Camera& camera, Mouse& mouse){
     Vector2 squarePos = canvasPos;
 
     //Drawn square screen offset
-    //
     squarePos.x += WINDOW_WIDTH / 2.0f - squareSize.x / 2.0f;
     squarePos.y += WINDOW_HEIGHT / 2.0f - squareSize.y / 2.0f;
 
-    CreateRect(squarePos.x, squarePos.y, squareSize.x, squareSize.y, RED);
-
-    std::cout << "POS X: " << squarePos.x << " -- POS Y: " << squarePos.y << std::endl;
-    std::cout << "Size: " << rects.size() << std::endl;
+    return {squarePos.x, squarePos.y};
 }
-void DrawManager::Draw(Camera& camera){
-    for(auto rect : rects){
-        if(rect.pos.x > canvasWidth || rect.pos.x < 0) continue;
-        if(rect.pos.y > canvasHeight || rect.pos.y < 0) continue;
+void DrawManager::Update(Mouse& mouse){
+    Undo(mouse);
+    if(!mouse.isDrawing){
+        if(!activeStroke.strokeData.empty()){
+            strokes.push_back(activeStroke);
+            activeStroke.strokeData.clear();
+        }
+        return;
+    }
+    for(auto& mousePos : mouse.mousePathBuffer){
+        Vector2 newPos = ConvertPosition(mousePos.x, mousePos.y);
+        Vector2 size = {6, 6};
+        activeStroke.strokeData.push_back({newPos, size, RED});
+    }
+    mouse.mousePathBuffer.clear();
 
-        float newRectPosX = rect.pos.x - camera.pos.x - WINDOW_WIDTH / 2.0f + rect.size.x / 2.0f;
-        float newRectPosY = rect.pos.y - camera.pos.y - WINDOW_HEIGHT / 2.0f + rect.size.y / 2.0f;
+    //std::cout << "Size: " << rects.size() << std::endl;
+}
+void DrawManager::DrawRect(DrawRectData& rect){
+    if(rect.pos.x > canvasWidth || rect.pos.x < 0) return;
+    if(rect.pos.y > canvasHeight || rect.pos.y < 0) return;
 
-        float screenX = newRectPosX * camera.zoom + WINDOW_WIDTH / 2.0f;
-        float screenY = newRectPosY * camera.zoom + WINDOW_HEIGHT / 2.0f;
+    float newRectPosX = rect.pos.x - camera->pos.x - WINDOW_WIDTH / 2.0f + rect.size.x / 2.0f;
+    float newRectPosY = rect.pos.y - camera->pos.y - WINDOW_HEIGHT / 2.0f + rect.size.y / 2.0f;
 
-        float newWidth = rect.size.x * camera.zoom;
-        float newHeight = rect.size.y * camera.zoom;
+    float screenX = newRectPosX * camera->zoom + WINDOW_WIDTH / 2.0f;
+    float screenY = newRectPosY * camera->zoom + WINDOW_HEIGHT / 2.0f;
 
-        float newX = screenX - newWidth / 2.0f;
-        float newY = screenY - newWidth / 2.0f;
+    float newWidth = rect.size.x * camera->zoom;
+    float newHeight = rect.size.y * camera->zoom;
 
-        SDL_FRect finalRect = {newX, newY, newWidth, newHeight};
-        SDL_SetRenderDrawColor(renderer, rect.color.r, rect.color.g, rect.color.b, rect.color.a);
-        SDL_RenderFillRect(renderer, &finalRect);
+    float newX = screenX - newWidth / 2.0f;
+    float newY = screenY - newWidth / 2.0f;
+
+    SDL_FRect finalRect = {newX, newY, newWidth, newHeight};
+    SDL_SetRenderDrawColor(renderer, rect.color.r, rect.color.g, rect.color.b, rect.color.a);
+    SDL_RenderFillRect(renderer, &finalRect);
+}
+void DrawManager::DrawStroke(Stroke& stroke){
+    for(auto& rect : stroke.strokeData){
+        DrawRect(rect);
     }
 }
+void DrawManager::Draw(void){
+    for(auto& rect : rects){
+        DrawRect(rect);
+    }
+    for(auto& stroke : strokes){
+        DrawStroke(stroke);
+    }
+    DrawStroke(activeStroke);
+}
+
+void DrawManager::Undo(Mouse& mouse){
+    if(mouse.isDrawing || strokes.empty()) return;
+    if(IsKeyHeld(SDL_SCANCODE_LCTRL)){
+        if(IsKeyPressed(SDLK_Z)){
+            std::cout << "triggered??" << std::endl;
+            strokes.erase(strokes.begin() + strokes.size() - 1);
+            //strokes.at(strokes.begin() + strokes.size() - 1)
+        }
+    }
+}
+
+
+
+
 
 
 
