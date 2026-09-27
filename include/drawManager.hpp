@@ -27,6 +27,8 @@ private:
     std::vector<DrawRectData> rects;
     std::vector<Stroke> strokes;
     Stroke activeStroke;
+
+    float brushSize = 7;
 public:
     SDL_Renderer* renderer;
     Camera* camera;

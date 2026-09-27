@@ -27,12 +27,11 @@ Vector2 DrawManager::ConvertPosition(float posX, float posY){
 
     Vector2 canvasPos = {canvasPosX, canvasPosY};
 
-    Vector2 squareSize = {10, 10};
     Vector2 squarePos = canvasPos;
 
     //Drawn square screen offset
-    squarePos.x += WINDOW_WIDTH / 2.0f - squareSize.x / 2.0f;
-    squarePos.y += WINDOW_HEIGHT / 2.0f - squareSize.y / 2.0f;
+    squarePos.x += WINDOW_WIDTH / 2.0f - brushSize / 2.0f;
+    squarePos.y += WINDOW_HEIGHT / 2.0f - brushSize / 2.0f;
 
     return {squarePos.x, squarePos.y};
 }
@@ -47,8 +46,7 @@ void DrawManager::Update(Mouse& mouse){
     }
     for(auto& mousePos : mouse.mousePathBuffer){
         Vector2 newPos = ConvertPosition(mousePos.x, mousePos.y);
-        Vector2 size = {6, 6};
-        activeStroke.strokeData.push_back({newPos, size, RED});
+        activeStroke.strokeData.push_back({newPos, {brushSize, brushSize}, RED});
     }
     mouse.mousePathBuffer.clear();
 
@@ -93,9 +91,7 @@ void DrawManager::Undo(Mouse& mouse){
     if(mouse.isDrawing || strokes.empty()) return;
     if(IsKeyHeld(SDL_SCANCODE_LCTRL)){
         if(IsKeyPressed(SDLK_Z)){
-            std::cout << "triggered??" << std::endl;
             strokes.erase(strokes.begin() + strokes.size() - 1);
-            //strokes.at(strokes.begin() + strokes.size() - 1)
         }
     }
 }
