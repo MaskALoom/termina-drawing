@@ -4,6 +4,21 @@
 #include <SDL3/SDL_mouse.h>
 #include <iostream>
 
+void DrawManager::BrushResize(void){
+    if(IsKeyHeld(SDL_SCANCODE_LSHIFT)){
+        if(IsKeyPressed(SDLK_S)){
+            std::cout << "triggered!" << std::endl;
+            brushSize += brushSize * 0.4;
+        }
+        else if(IsKeyPressed(SDLK_D)){
+            std::cout << "triggered!" << std::endl;
+            brushSize -= brushSize * 0.4;
+        }
+    }
+    if(brushSize > 15) brushSize = 15;
+    else if(brushSize < 0) brushSize = 1;
+}
+
 Color GetMonochromeColor(char value){
     return {value, value, value, value};
 }
@@ -12,7 +27,7 @@ void DrawManager::Init(float width, float height, Color color){
     canvasWidth = width;
     canvasHeight = height;
     float posX = 0;
-    float posY = 350 - 100;
+    float posY = 0;
 
     CreateRect(posX, posY, width, height, color);
 }
@@ -37,6 +52,7 @@ Vector2 DrawManager::ConvertPosition(float posX, float posY){
 }
 void DrawManager::Update(Mouse& mouse){
     Undo(mouse);
+    BrushResize();
     if(!mouse.isDrawing){
         if(!activeStroke.strokeData.empty()){
             strokes.push_back(activeStroke);
@@ -66,7 +82,7 @@ void DrawManager::DrawRect(DrawRectData& rect){
     float newHeight = rect.size.y * camera->zoom;
 
     float newX = screenX - newWidth / 2.0f;
-    float newY = screenY - newWidth / 2.0f;
+    float newY = screenY - newHeight / 2.0f;
 
     SDL_FRect finalRect = {newX, newY, newWidth, newHeight};
     SDL_SetRenderDrawColor(renderer, rect.color.r, rect.color.g, rect.color.b, rect.color.a);

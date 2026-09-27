@@ -10,6 +10,7 @@
 #include <SDL3/SDL.h>
 
 extern SDL_Keycode globalKeyPressed;
+extern Uint8 globalButtonPressed;
 
 typedef struct{
     int r;
@@ -25,5 +26,16 @@ typedef struct{
 
 bool IsKeyPressed(SDL_Keycode key);
 bool IsKeyHeld(SDL_Scancode key);
+bool IsButtonClicked(Uint8 button);
+bool IsButtonHeld(SDL_MouseButtonFlags button);
 
 #endif
+
+
+
+
+
+
+
+
+

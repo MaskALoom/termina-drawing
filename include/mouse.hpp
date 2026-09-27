@@ -3,6 +3,7 @@
 
 #include <SDL3/SDL.h>
 #include "globals.hpp"
+#include "camera.hpp"
 
 #include <vector>
 
@@ -14,7 +15,7 @@ public:
     std::vector<Vector2> mousePathBuffer;
     bool isDrawing = false;
 
-    void MouseUpdate(void);
+    void MouseUpdate(Camera& camera);
     Vector2 GetMouseDifference(void);
     Vector2 GetMousePosition(void);
 };

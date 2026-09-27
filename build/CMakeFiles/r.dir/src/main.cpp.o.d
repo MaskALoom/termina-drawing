@@ -206,6 +206,6 @@ CMakeFiles/r.dir/src/main.cpp.o: \
  /home/loom/Documents/C\ Projects/TerminaDrawing/src/../include/camera.hpp \
  /home/loom/Documents/C\ Projects/TerminaDrawing/src/../include/globals.hpp \
  /home/loom/Documents/C\ Projects/TerminaDrawing/src/../include/mouse.hpp \
- /home/loom/Documents/C\ Projects/TerminaDrawing/src/../include/drawManager.hpp \
  /home/loom/Documents/C\ Projects/TerminaDrawing/src/../include/camera.hpp \
+ /home/loom/Documents/C\ Projects/TerminaDrawing/src/../include/drawManager.hpp \
  /home/loom/Documents/C\ Projects/TerminaDrawing/src/../include/mouse.hpp

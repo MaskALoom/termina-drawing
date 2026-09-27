@@ -1,10 +1,12 @@
 #include "../include/mouse.hpp"
 
-void Mouse::MouseUpdate(void){
+void Mouse::MouseUpdate(Camera& camera){
     lastPos = pos;
     SDL_GetMouseState(&pos.x, &pos.y);
 
-    if(!IsKeyHeld(SDL_SCANCODE_R)){
+    if(camera.isCameraMoving) return;
+
+    if(!IsButtonHeld(SDL_BUTTON_LMASK)){
         isDrawing = false;
         return;
     }

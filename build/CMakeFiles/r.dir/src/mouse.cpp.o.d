@@ -79,6 +79,7 @@ CMakeFiles/r.dir/src/mouse.cpp.o: \
  /usr/local/include/SDL3/SDL_version.h \
  /usr/local/include/SDL3/SDL_oldnames.h \
  /home/loom/Documents/C\ Projects/TerminaDrawing/src/../include/globals.hpp \
+ /home/loom/Documents/C\ Projects/TerminaDrawing/src/../include/camera.hpp \
  /usr/include/c++/13/vector /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \

@@ -25,6 +25,8 @@ public:
     Vector2 pos = {0.0f, 0.0f};
     float zoom = 1.0f;
 
+    bool isCameraMoving = false;
+
     void Init(void);
     void AlterZoom(void);
     void MoveCamera(Vector2 difference);

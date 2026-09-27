@@ -883,6 +883,7 @@ CMakeFiles/r.dir/src/main.cpp.o: /home/loom/Documents/C\ Projects/TerminaDrawing
   /usr/local/include/SDL3/SDL_video.h
 
 CMakeFiles/r.dir/src/mouse.cpp.o: /home/loom/Documents/C\ Projects/TerminaDrawing/src/mouse.cpp \
+  /home/loom/Documents/C\ Projects/TerminaDrawing/include/camera.hpp \
   /home/loom/Documents/C\ Projects/TerminaDrawing/include/globals.hpp \
   /home/loom/Documents/C\ Projects/TerminaDrawing/include/mouse.hpp \
   /usr/include/c++/13/backward/binders.h \

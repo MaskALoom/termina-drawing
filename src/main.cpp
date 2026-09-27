@@ -50,7 +50,6 @@ public:
     }
     void EventPollHandler(SDL_Event& event){
         globalKeyPressed = SDLK_UNKNOWN;
-        int motions = 0;
         while(SDL_PollEvent(&event)){
             if(event.type == SDL_EVENT_QUIT){
                 running = false;
@@ -58,17 +57,16 @@ public:
             else if(event.type == SDL_EVENT_KEY_DOWN){
                 globalKeyPressed = event.key.key;
             }
+            else if(event.type == SDL_EVENT_MOUSE_BUTTON_DOWN){
+                globalButtonPressed = event.button.button;
+            }
             else if(event.type == SDL_EVENT_MOUSE_MOTION){
                 if(mouse.isDrawing) mouse.mousePathBuffer.push_back({event.motion.x, event.motion.y});
-                ++motions;
             }
-        }
-        if(motions > 0){
-            //std::cout << "MOTIONS: " << motions << std::endl;
         }
     }
     void Update(void){
-        mouse.MouseUpdate();
+        mouse.MouseUpdate(camera);
 
         SDL_Event event;
         EventPollHandler(event);

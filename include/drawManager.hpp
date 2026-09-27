@@ -28,7 +28,7 @@ private:
     std::vector<Stroke> strokes;
     Stroke activeStroke;
 
-    float brushSize = 7;
+    float brushSize = 3;
 public:
     SDL_Renderer* renderer;
     Camera* camera;
@@ -45,6 +45,7 @@ public:
     void Draw(void);
     void DrawStroke(Stroke& stroke);
     void DrawRect(DrawRectData& rect);
+    void BrushResize(void);
 
     void Undo(Mouse& mouse);
 };

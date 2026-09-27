@@ -20,23 +20,15 @@ void Camera::AlterZoom(void){
         if(zoomIndex > zoomIndexMax) zoomIndex = zoomIndexMax;
         zoomBaseValue = zoomValues[zoomIndex];
     }
-    /*
-    if(IsKeyPressed(SDLK_Q)){
-        zoomBaseValue -= 10.0f;
-        std::cout << "ZOOM: " << zoomBaseValue << std::endl;
-    }
-    else if(IsKeyPressed(SDLK_W)){
-        zoomBaseValue += 10.0f;
-        std::cout << "ZOOM: " << zoomBaseValue << std::endl;
-    }
-    if(zoomBaseValue <= 0.0f) zoom = 1.0f;
-    else if(zoomBaseValue >= 6000.0f) zoom = 6000.0f;
-    */
-
     zoom = zoomBaseValue / 100.0f;
 }
 void Camera::MoveCamera(Vector2 difference){
-    if(!IsKeyHeld(SDL_SCANCODE_SPACE)) return;
+    if(!IsKeyHeld(SDL_SCANCODE_SPACE)){
+        isCameraMoving = false;
+        return;
+    }
+    else isCameraMoving = true;
+    if(!IsButtonHeld(SDL_BUTTON_LMASK)) return;
 
     pos.x -= difference.x / zoom;
     pos.y -= difference.y / zoom;
