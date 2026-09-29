@@ -9,7 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/loom/Documents/C Projects/TerminaDrawing/src/camera.cpp" "CMakeFiles/r.dir/src/camera.cpp.o" "gcc" "CMakeFiles/r.dir/src/camera.cpp.o.d"
-  "/home/loom/Documents/C Projects/TerminaDrawing/src/drawManager.cpp" "CMakeFiles/r.dir/src/drawManager.cpp.o" "gcc" "CMakeFiles/r.dir/src/drawManager.cpp.o.d"
+  "/home/loom/Documents/C Projects/TerminaDrawing/src/canvas.cpp" "CMakeFiles/r.dir/src/canvas.cpp.o" "gcc" "CMakeFiles/r.dir/src/canvas.cpp.o.d"
   "/home/loom/Documents/C Projects/TerminaDrawing/src/globals.cpp" "CMakeFiles/r.dir/src/globals.cpp.o" "gcc" "CMakeFiles/r.dir/src/globals.cpp.o.d"
   "/home/loom/Documents/C Projects/TerminaDrawing/src/main.cpp" "CMakeFiles/r.dir/src/main.cpp.o" "gcc" "CMakeFiles/r.dir/src/main.cpp.o.d"
   "/home/loom/Documents/C Projects/TerminaDrawing/src/mouse.cpp" "CMakeFiles/r.dir/src/mouse.cpp.o" "gcc" "CMakeFiles/r.dir/src/mouse.cpp.o.d"

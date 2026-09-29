@@ -12,7 +12,8 @@
 
 #include "../include/camera.hpp"
 #include "../include/mouse.hpp"
-#include "../include/drawManager.hpp"
+//#include "../include/drawManager.hpp"
+#include "../include/canvas.hpp"
 
 SDL_Renderer* CreateRenderer(SDL_Window* window);
 SDL_Window* CreateWindow(std::string windowName, int width, int height);
@@ -22,7 +23,9 @@ private:
 public:
     Camera camera;
     Mouse mouse;
-    DrawManager drawManager;
+    StrokeHandler strokeHandler;
+    Canvas canvas;
+    CanvasInputHandler cInputHandler;
 
     SDL_Window* window;
     SDL_Renderer* renderer;
@@ -41,36 +44,46 @@ public:
 
             return;
         }
-
-        drawManager.renderer = renderer;
-        drawManager.camera = &camera;
-        drawManager.Init(2500, 2000, GetMonochromeColor((char)230));
-        drawManager.CreateRect(100, 100, 200, 200, RED);
         camera.Init();
+        canvas.CanvasInit(2500, 2000, GetMonochromeColor((char)200));
+        canvas.renderer = renderer;
+        canvas.camera = &camera;
+
+        strokeHandler.Init(3, 0, 0.5f, &canvas);
+        canvas.strokeHandler = &strokeHandler;
+        cInputHandler.Init(&canvas, &strokeHandler);
     }
     void EventPollHandler(SDL_Event& event){
-        globalKeyPressed = SDLK_UNKNOWN;
-        while(SDL_PollEvent(&event)){
-            if(event.type == SDL_EVENT_QUIT){
+        ResetGlobalKeysAndButtons();
+        std::vector<SDL_Event> events;
+        while(SDL_PollEvent(&event)) events.push_back(event);
+        for(const SDL_Event& eventThing : events){
+            if(eventThing.type == SDL_EVENT_QUIT){
                 running = false;
             }
-            else if(event.type == SDL_EVENT_KEY_DOWN){
-                globalKeyPressed = event.key.key;
-            }
-            else if(event.type == SDL_EVENT_MOUSE_BUTTON_DOWN){
-                globalButtonPressed = event.button.button;
-            }
-            else if(event.type == SDL_EVENT_MOUSE_MOTION){
-                if(mouse.isDrawing) mouse.mousePathBuffer.push_back({event.motion.x, event.motion.y});
-            }
+            else if(eventThing.type == SDL_EVENT_KEY_DOWN) globalKeyPressed = eventThing.key.key;
+            else if(eventThing.type == SDL_EVENT_MOUSE_BUTTON_DOWN) globalButtonPressed = eventThing.button.button;
+            else if(eventThing.type == SDL_EVENT_MOUSE_BUTTON_UP) globalButtonReleased = eventThing.button.button;
+            else if(eventThing.type == SDL_EVENT_PEN_DOWN) globalPenHeld = true;
+            else if(eventThing.type == SDL_EVENT_PEN_UP) globalPenReleased = true;
+            else continue;
         }
+        mouse.CheckActiveInputDevice();
+        for(SDL_Event& eventThing : events){
+            if(eventThing.type == SDL_EVENT_QUIT){
+                running = false;
+            }
+            mouse.GetMousePath(eventThing);
+        }
+        events.clear();
     }
     void Update(void){
         mouse.MouseUpdate(camera);
+        cInputHandler.Update();
 
         SDL_Event event;
         EventPollHandler(event);
-        drawManager.Update(mouse);
+        strokeHandler.MousePathStrokeInterpolation(mouse);
         camera.AlterZoom();
         camera.MoveCamera(mouse.GetMouseDifference());
 
@@ -79,7 +92,7 @@ public:
     void Draw(void){
         SDL_SetRenderDrawColor(renderer, 25, 25, 25, 255);
         SDL_RenderClear(renderer);
-        drawManager.Draw();
+        canvas.DrawCanvasAndStrokes();
         SDL_RenderPresent(renderer);
     }
 };
@@ -89,11 +102,14 @@ int main(int argc, char** argv){
     main.ProgramInit();
     while(main.running){
         if(main.programExit) break;
-        main.Update();
-        main.Draw();
+        else{
+            main.Update();
+            main.Draw();
+        }
     }
     SDL_DestroyRenderer(main.renderer);
     SDL_DestroyWindow(main.window);
+    SDL_Quit();
     return 0;
 }
 

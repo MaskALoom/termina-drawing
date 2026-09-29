@@ -21,6 +21,6 @@ target_sources(r
     src/main.cpp
     src/mouse.cpp
     src/camera.cpp
-    src/drawManager.cpp
     src/globals.cpp
+    src/canvas.cpp
 )

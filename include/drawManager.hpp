@@ -39,18 +39,23 @@ public:
     bool drawingActive = false;
 
     void Init(float width, float height, Color color);
+
+    //This stuff
     Vector2 ConvertPosition(float posX, float posY);
     void CreateRect(float x, float y, float width, float height, Color color);
+    void DrawRect(DrawRectData& rect);
+
     void Update(Mouse& mouse);
+
     void Draw(void);
     void DrawStroke(Stroke& stroke);
-    void DrawRect(DrawRectData& rect);
+
+
+
     void BrushResize(void);
 
     void Undo(Mouse& mouse);
 };
-
-Color GetMonochromeColor(char value);
 
 #endif
 

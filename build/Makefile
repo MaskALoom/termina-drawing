@@ -153,29 +153,29 @@ src/camera.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/r.dir/build.make CMakeFiles/r.dir/src/camera.cpp.s
 .PHONY : src/camera.cpp.s
 
-src/drawManager.o: src/drawManager.cpp.o
-.PHONY : src/drawManager.o
+src/canvas.o: src/canvas.cpp.o
+.PHONY : src/canvas.o
 
 # target to build an object file
-src/drawManager.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/r.dir/build.make CMakeFiles/r.dir/src/drawManager.cpp.o
-.PHONY : src/drawManager.cpp.o
+src/canvas.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/r.dir/build.make CMakeFiles/r.dir/src/canvas.cpp.o
+.PHONY : src/canvas.cpp.o
 
-src/drawManager.i: src/drawManager.cpp.i
-.PHONY : src/drawManager.i
+src/canvas.i: src/canvas.cpp.i
+.PHONY : src/canvas.i
 
 # target to preprocess a source file
-src/drawManager.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/r.dir/build.make CMakeFiles/r.dir/src/drawManager.cpp.i
-.PHONY : src/drawManager.cpp.i
+src/canvas.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/r.dir/build.make CMakeFiles/r.dir/src/canvas.cpp.i
+.PHONY : src/canvas.cpp.i
 
-src/drawManager.s: src/drawManager.cpp.s
-.PHONY : src/drawManager.s
+src/canvas.s: src/canvas.cpp.s
+.PHONY : src/canvas.s
 
 # target to generate assembly for a file
-src/drawManager.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/r.dir/build.make CMakeFiles/r.dir/src/drawManager.cpp.s
-.PHONY : src/drawManager.cpp.s
+src/canvas.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/r.dir/build.make CMakeFiles/r.dir/src/canvas.cpp.s
+.PHONY : src/canvas.cpp.s
 
 src/globals.o: src/globals.cpp.o
 .PHONY : src/globals.o
@@ -261,9 +261,9 @@ help:
 	@echo "... src/camera.o"
 	@echo "... src/camera.i"
 	@echo "... src/camera.s"
-	@echo "... src/drawManager.o"
-	@echo "... src/drawManager.i"
-	@echo "... src/drawManager.s"
+	@echo "... src/canvas.o"
+	@echo "... src/canvas.i"
+	@echo "... src/canvas.s"
 	@echo "... src/globals.o"
 	@echo "... src/globals.i"
 	@echo "... src/globals.s"

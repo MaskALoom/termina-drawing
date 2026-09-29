@@ -2,25 +2,22 @@
 #include "../include/mouse.hpp"
 
 #include <SDL3/SDL_mouse.h>
+#include <SDL3/SDL_render.h>
 #include <iostream>
 
 void DrawManager::BrushResize(void){
     if(IsKeyHeld(SDL_SCANCODE_LSHIFT)){
         if(IsKeyPressed(SDLK_S)){
-            std::cout << "triggered!" << std::endl;
+            std::cout << "Brush Size: " << brushSize << std::endl;
             brushSize += brushSize * 0.4;
         }
         else if(IsKeyPressed(SDLK_D)){
-            std::cout << "triggered!" << std::endl;
+            std::cout << "Brush Size: " << brushSize << std::endl;
             brushSize -= brushSize * 0.4;
         }
     }
-    if(brushSize > 15) brushSize = 15;
-    else if(brushSize < 0) brushSize = 1;
-}
-
-Color GetMonochromeColor(char value){
-    return {value, value, value, value};
+    if(brushSize > 50) brushSize = 50;
+    else if(brushSize < 1) brushSize = 1;
 }
 
 void DrawManager::Init(float width, float height, Color color){
@@ -61,7 +58,7 @@ void DrawManager::Update(Mouse& mouse){
         return;
     }
     for(auto& mousePos : mouse.mousePathBuffer){
-        Vector2 newPos = ConvertPosition(mousePos.x, mousePos.y);
+        Vector2 newPos = ConvertPosition(mousePos.pos.x, mousePos.pos.y);
         activeStroke.strokeData.push_back({newPos, {brushSize, brushSize}, RED});
     }
     mouse.mousePathBuffer.clear();
@@ -85,6 +82,9 @@ void DrawManager::DrawRect(DrawRectData& rect){
     float newY = screenY - newHeight / 2.0f;
 
     SDL_FRect finalRect = {newX, newY, newWidth, newHeight};
+    if(rect.color.a < 255){
+        SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+    }
     SDL_SetRenderDrawColor(renderer, rect.color.r, rect.color.g, rect.color.b, rect.color.a);
     SDL_RenderFillRect(renderer, &finalRect);
 }

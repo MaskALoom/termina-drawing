@@ -3,6 +3,27 @@
 
 SDL_Keycode globalKeyPressed = SDLK_UNKNOWN;
 Uint8 globalButtonPressed = 0;
+Uint8 globalButtonReleased = 0;
+bool globalPenHeld = false;
+bool globalPenReleased = false;
+
+Color GetMonochromeColor(char value){
+    return {value, value, value, value};
+}
+
+Color Fade(Color color, float fade){
+    Color newColor = color;
+    newColor.a = newColor.a * fade;
+    return newColor;
+}
+
+void ResetGlobalKeysAndButtons(void){
+    globalKeyPressed = SDLK_UNKNOWN;
+    globalButtonPressed = 0;
+    globalButtonReleased = 0;
+    globalPenHeld = false;
+    globalPenReleased = false;
+}
 
 bool IsKeyPressed(SDL_Keycode key){
     if(key == globalKeyPressed) return true;
@@ -29,3 +50,31 @@ bool IsButtonHeld(SDL_MouseButtonFlags button){
     }
     return false;
 }
+bool IsButtonReleased(Uint8 button){
+    if(globalButtonReleased == button){
+        return true;
+    }
+    return false;
+}
+
+bool IsPenButtonHeld(void){
+    if(globalPenHeld){
+        return true;
+    }
+    else return false;
+}
+bool IsPenButtonReleased(void){
+    if(globalPenReleased){
+        return true;
+    }
+    else return false;
+}
+
+
+
+
+
+
+
+
+

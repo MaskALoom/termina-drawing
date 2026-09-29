@@ -111,24 +111,10 @@ CMakeFiles/r.dir/src/camera.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/r.dir/src/camera.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/loom/Documents/C Projects/TerminaDrawing/src/camera.cpp" -o CMakeFiles/r.dir/src/camera.cpp.s
 
-CMakeFiles/r.dir/src/drawManager.cpp.o: CMakeFiles/r.dir/flags.make
-CMakeFiles/r.dir/src/drawManager.cpp.o: /home/loom/Documents/C\ Projects/TerminaDrawing/src/drawManager.cpp
-CMakeFiles/r.dir/src/drawManager.cpp.o: CMakeFiles/r.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/loom/Documents/C Projects/TerminaDrawing/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/r.dir/src/drawManager.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/r.dir/src/drawManager.cpp.o -MF CMakeFiles/r.dir/src/drawManager.cpp.o.d -o CMakeFiles/r.dir/src/drawManager.cpp.o -c "/home/loom/Documents/C Projects/TerminaDrawing/src/drawManager.cpp"
-
-CMakeFiles/r.dir/src/drawManager.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/r.dir/src/drawManager.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/loom/Documents/C Projects/TerminaDrawing/src/drawManager.cpp" > CMakeFiles/r.dir/src/drawManager.cpp.i
-
-CMakeFiles/r.dir/src/drawManager.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/r.dir/src/drawManager.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/loom/Documents/C Projects/TerminaDrawing/src/drawManager.cpp" -o CMakeFiles/r.dir/src/drawManager.cpp.s
-
 CMakeFiles/r.dir/src/globals.cpp.o: CMakeFiles/r.dir/flags.make
 CMakeFiles/r.dir/src/globals.cpp.o: /home/loom/Documents/C\ Projects/TerminaDrawing/src/globals.cpp
 CMakeFiles/r.dir/src/globals.cpp.o: CMakeFiles/r.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/loom/Documents/C Projects/TerminaDrawing/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/r.dir/src/globals.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/loom/Documents/C Projects/TerminaDrawing/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/r.dir/src/globals.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/r.dir/src/globals.cpp.o -MF CMakeFiles/r.dir/src/globals.cpp.o.d -o CMakeFiles/r.dir/src/globals.cpp.o -c "/home/loom/Documents/C Projects/TerminaDrawing/src/globals.cpp"
 
 CMakeFiles/r.dir/src/globals.cpp.i: cmake_force
@@ -139,13 +125,27 @@ CMakeFiles/r.dir/src/globals.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/r.dir/src/globals.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/loom/Documents/C Projects/TerminaDrawing/src/globals.cpp" -o CMakeFiles/r.dir/src/globals.cpp.s
 
+CMakeFiles/r.dir/src/canvas.cpp.o: CMakeFiles/r.dir/flags.make
+CMakeFiles/r.dir/src/canvas.cpp.o: /home/loom/Documents/C\ Projects/TerminaDrawing/src/canvas.cpp
+CMakeFiles/r.dir/src/canvas.cpp.o: CMakeFiles/r.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/loom/Documents/C Projects/TerminaDrawing/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/r.dir/src/canvas.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/r.dir/src/canvas.cpp.o -MF CMakeFiles/r.dir/src/canvas.cpp.o.d -o CMakeFiles/r.dir/src/canvas.cpp.o -c "/home/loom/Documents/C Projects/TerminaDrawing/src/canvas.cpp"
+
+CMakeFiles/r.dir/src/canvas.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/r.dir/src/canvas.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/loom/Documents/C Projects/TerminaDrawing/src/canvas.cpp" > CMakeFiles/r.dir/src/canvas.cpp.i
+
+CMakeFiles/r.dir/src/canvas.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/r.dir/src/canvas.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/loom/Documents/C Projects/TerminaDrawing/src/canvas.cpp" -o CMakeFiles/r.dir/src/canvas.cpp.s
+
 # Object files for target r
 r_OBJECTS = \
 "CMakeFiles/r.dir/src/main.cpp.o" \
 "CMakeFiles/r.dir/src/mouse.cpp.o" \
 "CMakeFiles/r.dir/src/camera.cpp.o" \
-"CMakeFiles/r.dir/src/drawManager.cpp.o" \
-"CMakeFiles/r.dir/src/globals.cpp.o"
+"CMakeFiles/r.dir/src/globals.cpp.o" \
+"CMakeFiles/r.dir/src/canvas.cpp.o"
 
 # External object files for target r
 r_EXTERNAL_OBJECTS =
@@ -153,8 +153,8 @@ r_EXTERNAL_OBJECTS =
 r : CMakeFiles/r.dir/src/main.cpp.o
 r : CMakeFiles/r.dir/src/mouse.cpp.o
 r : CMakeFiles/r.dir/src/camera.cpp.o
-r : CMakeFiles/r.dir/src/drawManager.cpp.o
 r : CMakeFiles/r.dir/src/globals.cpp.o
+r : CMakeFiles/r.dir/src/canvas.cpp.o
 r : CMakeFiles/r.dir/build.make
 r : /usr/local/lib/libraylib.a
 r : /usr/local/lib/libSDL3.so.0.3.0
