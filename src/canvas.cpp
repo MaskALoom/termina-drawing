@@ -1,4 +1,5 @@
 #include "../include/canvas.hpp"
+#include <SDL3/SDL_render.h>
 
 void Canvas::CanvasInit(float width, float height, Color color){
     canvasWidth = width;
@@ -27,11 +28,47 @@ void Canvas::RegainLastRemovedStroke(void){
 void Canvas::ChangeBackgroundColor(Color color){
     backgroundColor = color;
 }
+void Canvas::DrawCanvasGrid(void){
+    int index = 0;
+    for(int i = 0; i < canvasWidth; ++i){
+        Vector2 posStart = {(float)i, 0};
+        Vector2 posEnd = {(float)i, canvasHeight};
+        DrawLine(posStart, posEnd, BLACK);
+        if(index % 5 == 0){
+            Vector2 posStart = {(float)i-0.2f, 0};
+            Vector2 posEnd = {(float)i-0.2f, canvasHeight};
+            for(int j = 0; j < 5; ++j){
+                DrawLine(posStart, posEnd, BLACK);
+
+                posStart.x += 0.1f;
+                posEnd.x += 0.1f;
+            }
+        }
+        ++index;
+    }
+    index = 0;
+    for(float i = 0; i < canvasHeight; ++i){
+        Vector2 posStart = {0, i};
+        Vector2 posEnd = {canvasWidth, i};
+        DrawLine(posStart, posEnd, BLACK);
+        if(index % 5 == 0){
+            Vector2 posStart = {0, i-0.3f};
+            Vector2 posEnd = {canvasWidth, i-0.3f};
+            for(int j = 0; j < 5; ++j){
+                DrawLine(posStart, posEnd, BLACK);
+
+                posStart.y += 0.1f;
+                posEnd.y += 0.1f;
+            }
+        }
+        ++index;
+    }
+}
 void Canvas::DrawCanvasBackground(void){
     Vector2 pos = {canvasPosX, canvasPosY};
     Vector2 size = {canvasWidth, canvasHeight};
-    DrawConvertPosRelToCamera(pos, size, backgroundColor);
-    DrawConvertPosRelToCamera({100, 100}, {200, 200}, RED);
+    DrawRect(pos, size, backgroundColor);
+    DrawRect({100, 100}, {200, 200}, RED);
 }
 void Canvas::DrawCanvasAndStrokes(void){
     DrawCanvasBackground();
@@ -43,8 +80,10 @@ void Canvas::DrawCanvasAndStrokes(void){
     for(auto& point : strokeHandler->GetActiveStroke().strokeData){
         DrawPoint(point, strokeHandler->tempColor);
     }
+    if(camera->zoom > 18){
+        DrawCanvasGrid();
+    }
 }
-
 void StrokeHandler::Init(float initBrushSize, float initBrushMin, float initOpacityMin, Canvas* canvas){
     canvasP = canvas;
     brushSize = initBrushSize;
@@ -81,10 +120,29 @@ void StrokeHandler::ProcessBuffer(void)
 
         float biggerDifference = std::max(std::abs(xDifference), std::abs(yDifference));
 
+        /*
+        StrokePointData tempStartPos = {0.0f, 0.0f, 0.0f, 0.0f};
+        StrokePointData tempEndPos = {0.0f, 0.0f, 0.0f, 0.0f};
+
+        tempStartPos.pos = {pointStart.pos.x, pointStart.pos.y};
+        tempEndPos.pos = {pointEnd.pos.x, pointEnd.pos.y};
+
+        tempStartPos = canvasP->ConvertSPosToCPos(tempStartPos);
+        tempEndPos = canvasP->ConvertSPosToCPos(tempEndPos);
+
+        float xDifference = tempEndPos.pos.x - tempStartPos.pos.x;
+        float yDifference = tempEndPos.pos.y - tempStartPos.pos.y;
+
+        float biggerDifference = std::max(std::abs(xDifference), std::abs(yDifference));
+
+        std::cout << "difference: " << biggerDifference << std::endl;
+        */
+
         if (biggerDifference <= 1.0f){
             newPathPoints.push_back(pointStart);
             continue;
         }
+
 
         float xIncrement = xDifference / biggerDifference;
         float yIncrement = yDifference / biggerDifference;
@@ -115,6 +173,34 @@ void StrokeHandler::ProcessBuffer(void)
     pathProcessingBuffer.clear();
     pathProcessingBuffer.push_back(lastBufferPoint);
 }
+void StrokeHandler::CheckValidDistance(Mouse& mouse){
+    PathPoint pointStart = pathProcessingBuffer[0];
+    std::vector<PathPoint> newProcessingBuffer;
+    newProcessingBuffer.push_back(pointStart);
+    for(auto& point : pathProcessingBuffer){
+        StrokePointData tempStartPos = {0.0f, 0.0f, 0.0f, 0.0f};
+        StrokePointData tempEndPos = {0.0f, 0.0f, 0.0f, 0.0f};
+
+        tempStartPos.pos = {pointStart.pos.x, pointStart.pos.y};
+        tempEndPos.pos = {point.pos.x, point.pos.y};
+
+        tempStartPos = canvasP->ConvertSPosToCPos(tempStartPos);
+        tempEndPos = canvasP->ConvertSPosToCPos(tempEndPos);
+
+        float xDifference = tempEndPos.pos.x - tempStartPos.pos.x;
+        float yDifference = tempEndPos.pos.y - tempStartPos.pos.y;
+
+        float biggerDifference = std::max(std::abs(xDifference), std::abs(yDifference));
+
+        if(biggerDifference <= 1.0f){
+            continue;
+        }
+        else{
+            newProcessingBuffer.push_back(point);
+        }
+    }
+    pathProcessingBuffer = newProcessingBuffer;
+}
 void StrokeHandler::MousePathStrokeInterpolation(Mouse& mouse){
     if(!mouse.isDrawing){
         if(!activeStroke.strokeData.empty()){
@@ -131,7 +217,12 @@ void StrokeHandler::MousePathStrokeInterpolation(Mouse& mouse){
         }
         mouse.mousePathBuffer.clear();
         if(pathProcessingBuffer.size() > 1){
-            ProcessBuffer();
+            //CheckValidDistance(mouse);
+            if(pathProcessingBuffer.size() > 1){
+                ProcessBuffer();
+                //Meant for some weird point overlap
+                activeStroke.strokeData.pop_back();
+            }
         }
     }
 }
@@ -164,23 +255,30 @@ StrokePointData Canvas::ConvertSPosToCPos(StrokePointData& pointData){
 
     return {squarePos.x, squarePos.y, pointData.size, pointData.penPressure};
 }
-void Canvas::DrawConvertPosRelToCamera(Vector2 pos, Vector2 size, Color color){
-    if(pos.x > canvasWidth || pos.x < 0) return;
-    if(pos.y > canvasHeight || pos.y < 0) return;
+void Canvas::ConvertPosRelToCamera(Vector2* pos, Vector2* size){
+    if(pos->x > canvasWidth || pos->x < 0) return;
+    if(pos->y > canvasHeight || pos->y < 0) return;
 
-    float newRectPosX = pos.x - camera->pos.x - WINDOW_WIDTH / 2.0f + size.x / 2.0f;
-    float newRectPosY = pos.y - camera->pos.y - WINDOW_HEIGHT / 2.0f + size.y / 2.0f;
+    float newRectPosX = pos->x - camera->pos.x - WINDOW_WIDTH / 2.0f + size->x / 2.0f;
+    float newRectPosY = pos->y - camera->pos.y - WINDOW_HEIGHT / 2.0f + size->y / 2.0f;
 
     float screenX = newRectPosX * camera->zoom + WINDOW_WIDTH / 2.0f;
     float screenY = newRectPosY * camera->zoom + WINDOW_HEIGHT / 2.0f;
 
-    float newWidth = size.x * camera->zoom;
-    float newHeight = size.y * camera->zoom;
+    float newWidth = size->x * camera->zoom;
+    float newHeight = size->y * camera->zoom;
 
-    float newX = screenX - newWidth / 2.0f;
-    float newY = screenY - newHeight / 2.0f;
+    pos->x = screenX - newWidth / 2.0f;
+    pos->y = screenY - newHeight / 2.0f;
 
-    SDL_FRect finalRect = {newX, newY, newWidth, newHeight};
+    size->x = newWidth;
+    size->y = newHeight;
+}
+
+//Draw functions
+void Canvas::DrawRect(Vector2 pos, Vector2 size, Color color){
+    ConvertPosRelToCamera(&pos, &size);
+    SDL_FRect finalRect = {pos.x, pos.y, size.x, size.y};
 
     if(color.a < 255){
         SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
@@ -188,14 +286,25 @@ void Canvas::DrawConvertPosRelToCamera(Vector2 pos, Vector2 size, Color color){
     SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
     SDL_RenderFillRect(renderer, &finalRect);
 }
+void Canvas::DrawLine(Vector2 posStart, Vector2 posEnd, Color color){
+    Vector2 size = {0, 0};
+    ConvertPosRelToCamera(&posStart, &size);
+    ConvertPosRelToCamera(&posEnd, &size);
+    SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+
+    SDL_RenderLine(renderer, posStart.x, posStart.y, posEnd.x, posEnd.y);
+}
 void Canvas::DrawPoint(StrokePointData& pointData, Color pointColor){
-    DrawConvertPosRelToCamera({pointData.pos.x, pointData.pos.y}, {pointData.size, pointData.size}, pointColor);
+    Vector2 newPos = pointData.pos;
+    Vector2 newSize = {pointData.size, pointData.size};
+    DrawRect(newPos, newSize, pointColor);
 }
 
 void CanvasInputHandler::Init(Canvas* canvasP, StrokeHandler* strokeHandlerP){
     canvas = canvasP;
     strokeHandler = strokeHandlerP;
 }
+
 void CanvasInputHandler::Undo(void){
     if(!IsKeyHeld(SDL_SCANCODE_LCTRL)) return;
     if(IsKeyPressed(SDLK_Z)) canvas->RemoveLastStroke();

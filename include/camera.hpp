@@ -19,7 +19,7 @@ private:
 
     std::vector<float> zoomValues;
     int zoomIndex = 8;
-    int zoomIndexMax = 100;
+    int zoomIndexMax = 20;
 public:
     CameraState state = CameraState::STATE_NONE;
     Vector2 pos = {0.0f, 0.0f};

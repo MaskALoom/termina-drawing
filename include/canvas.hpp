@@ -43,6 +43,7 @@ public:
     void RegainLastRemovedStroke(void);
     void ChangeBackgroundColor(Color color);
     void DrawCanvasBackground(void);
+    void DrawCanvasGrid(void);
 
     void DrawCanvasAndStrokes(void);
 
@@ -51,7 +52,9 @@ public:
     //Functions for postion conversion
     StrokePointData ConvertSPosToCPos(StrokePointData& pointData);
     void DrawPoint(StrokePointData& pointData, Color pointColor);
-    void DrawConvertPosRelToCamera(Vector2 pos, Vector2 size, Color color);
+    void DrawLine(Vector2 posStart, Vector2 posEnd, Color color);
+    void ConvertPosRelToCamera(Vector2* pos, Vector2* size);
+    void DrawRect(Vector2 pos, Vector2 size, Color color);
 };
 
 class StrokeHandler{
@@ -69,12 +72,13 @@ private:
     int brushMaxSize = 50 - 1;
     int brushIndex;
 public:
-    Color tempColor = GetMonochromeColor(25);
+    Color tempColor = GetMonochromeColor(50);
 
     void Init(float initBrushSize, float initBrushMin, float initOpacityMin, Canvas* canvas);
     Stroke GetActiveStroke(void);
     void MousePathStrokeInterpolation(Mouse& mouse);
     void ProcessBuffer(void);
+    void CheckValidDistance(Mouse& mouse);
     void IncreaseBrushSize(void);
     void DecreaseBrushSize(void);
 };
