@@ -72,13 +72,13 @@ private:
     int brushMaxSize = 50 - 1;
     int brushIndex;
 public:
-    Color tempColor = GetMonochromeColor(50);
+    Color tempColor = GetMonochromeColor(75);
 
     void Init(float initBrushSize, float initBrushMin, float initOpacityMin, Canvas* canvas);
     Stroke GetActiveStroke(void);
     void MousePathStrokeInterpolation(Mouse& mouse);
     void ProcessBuffer(void);
-    void CheckValidDistance(Mouse& mouse);
+    void CheckValidDistance(void);
     void IncreaseBrushSize(void);
     void DecreaseBrushSize(void);
 };

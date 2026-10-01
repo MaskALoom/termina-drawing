@@ -1,5 +1,6 @@
 #include "../include/canvas.hpp"
 #include <SDL3/SDL_render.h>
+#include <cmath>
 
 void Canvas::CanvasInit(float width, float height, Color color){
     canvasWidth = width;
@@ -29,39 +30,26 @@ void Canvas::ChangeBackgroundColor(Color color){
     backgroundColor = color;
 }
 void Canvas::DrawCanvasGrid(void){
-    int index = 0;
+    Color lineColor = GetMonochromeColor(50);
     for(int i = 0; i < canvasWidth; ++i){
         Vector2 posStart = {(float)i, 0};
         Vector2 posEnd = {(float)i, canvasHeight};
-        DrawLine(posStart, posEnd, BLACK);
-        if(index % 5 == 0){
-            Vector2 posStart = {(float)i-0.2f, 0};
-            Vector2 posEnd = {(float)i-0.2f, canvasHeight};
-            for(int j = 0; j < 5; ++j){
-                DrawLine(posStart, posEnd, BLACK);
 
-                posStart.x += 0.1f;
-                posEnd.x += 0.1f;
-            }
-        }
-        ++index;
+        if(i % 10 == 0) lineColor = BLACK;
+        else if(i % 5 == 0) lineColor = GetMonochromeColor(100);
+        else lineColor = GetMonochromeColor(150);
+
+        DrawLine(posStart, posEnd, lineColor);
     }
-    index = 0;
-    for(float i = 0; i < canvasHeight; ++i){
-        Vector2 posStart = {0, i};
-        Vector2 posEnd = {canvasWidth, i};
-        DrawLine(posStart, posEnd, BLACK);
-        if(index % 5 == 0){
-            Vector2 posStart = {0, i-0.3f};
-            Vector2 posEnd = {canvasWidth, i-0.3f};
-            for(int j = 0; j < 5; ++j){
-                DrawLine(posStart, posEnd, BLACK);
+    for(int i = 0; i < canvasHeight; ++i){
+        Vector2 posStart = {0, (float)i};
+        Vector2 posEnd = {canvasWidth, (float)i};
 
-                posStart.y += 0.1f;
-                posEnd.y += 0.1f;
-            }
-        }
-        ++index;
+        if(i % 10 == 0) lineColor = BLACK;
+        else if(i % 5 == 0) lineColor = GetMonochromeColor(100);
+        else lineColor = GetMonochromeColor(150);
+
+        DrawLine(posStart, posEnd, lineColor);
     }
 }
 void Canvas::DrawCanvasBackground(void){
@@ -96,11 +84,12 @@ void StrokeHandler::Init(float initBrushSize, float initBrushMin, float initOpac
     for(int i = 0; i < brushMaxSize + 1; ++i){
         brushSizes[i] = brushSizeInit;
         brushSizeInit *= brushMult;
+        brushSizeInit = std::ceil(brushSizeInit);
     }
-    brushIndex = 8;
-    brushSize = brushSizes[brushIndex];
-
     activeStroke.color = tempColor;
+
+    brushIndex = 0;
+    brushSize = brushSizes[brushIndex];
 }
 Stroke StrokeHandler::GetActiveStroke(void){
     return activeStroke;
@@ -112,15 +101,9 @@ void StrokeHandler::ProcessBuffer(void)
     std::vector<PathPoint> newPathPoints;
 
     for (size_t index = 0; index + 1 < pathProcessingBuffer.size(); ++index){
-        PathPoint& pointStart = pathProcessingBuffer[index];
-        PathPoint& pointEnd   = pathProcessingBuffer[index + 1];
+        PathPoint pointStart = pathProcessingBuffer[index];
+        PathPoint pointEnd   = pathProcessingBuffer[index + 1];
 
-        float xDifference = pointEnd.pos.x - pointStart.pos.x;
-        float yDifference = pointEnd.pos.y - pointStart.pos.y;
-
-        float biggerDifference = std::max(std::abs(xDifference), std::abs(yDifference));
-
-        /*
         StrokePointData tempStartPos = {0.0f, 0.0f, 0.0f, 0.0f};
         StrokePointData tempEndPos = {0.0f, 0.0f, 0.0f, 0.0f};
 
@@ -135,23 +118,33 @@ void StrokeHandler::ProcessBuffer(void)
 
         float biggerDifference = std::max(std::abs(xDifference), std::abs(yDifference));
 
-        std::cout << "difference: " << biggerDifference << std::endl;
-        */
+        xDifference = pointEnd.pos.x - pointStart.pos.x;
+        yDifference = pointEnd.pos.y - pointStart.pos.y;
 
-        if (biggerDifference <= 1.0f){
+        if(biggerDifference <= 1.0f){
+            if(!activeStroke.strokeData.empty() && index == 0) continue;
+
             newPathPoints.push_back(pointStart);
             continue;
         }
+        std::cout << "Interpolation TRIGGERED!" << std::endl;
+        std::cout << "Start X: " << pointStart.pos.x << " Start Y: " << pointStart.pos.y << std::endl;
+        std::cout << "End X: " << pointEnd.pos.x << " End Y: " << pointEnd.pos.y << std::endl;
 
+        //newPathPoints.push_back(pointStart);
+        //return;
 
         float xIncrement = xDifference / biggerDifference;
         float yIncrement = yDifference / biggerDifference;
 
         float pressureDifference = pointEnd.pressure - pointStart.pressure;
-
         float pressureIncrement = pressureDifference / biggerDifference;
 
-        for (int i = 0; i < biggerDifference; ++i){
+        //std::cout << "Difference: " << biggerDifference << std::endl;
+
+        for (int i = 0; i < std::floor(biggerDifference); ++i){
+            if(!activeStroke.strokeData.empty() && i == 0) continue;
+
             float newX = pointStart.pos.x + xIncrement * i;
             float newY = pointStart.pos.y + yIncrement * i;
             float newPressure = pointStart.pressure + pressureIncrement * i;
@@ -163,17 +156,23 @@ void StrokeHandler::ProcessBuffer(void)
 
     for (auto& mousePos : newPathPoints) {
         float sizeDifference = brushSize - brushMin;
-        float newSize = brushMin + sizeDifference * mousePos.pressure;
+        float newSize = std::round(brushMin + sizeDifference * mousePos.pressure);
 
         StrokePointData newData = {{mousePos.pos.x, mousePos.pos.y}, newSize, mousePos.pressure};
+
+        //Final conersion of position to be drawn
         StrokePointData newPoint = canvasP->ConvertSPosToCPos(newData);
+
+        newPoint.pos.x = std::floor(newPoint.pos.x);
+        newPoint.pos.y = std::floor(newPoint.pos.y);
+
         activeStroke.strokeData.push_back(newPoint);
     }
     PathPoint lastBufferPoint = pathProcessingBuffer.back();
     pathProcessingBuffer.clear();
     pathProcessingBuffer.push_back(lastBufferPoint);
 }
-void StrokeHandler::CheckValidDistance(Mouse& mouse){
+void StrokeHandler::CheckValidDistance(void){
     PathPoint pointStart = pathProcessingBuffer[0];
     std::vector<PathPoint> newProcessingBuffer;
     newProcessingBuffer.push_back(pointStart);
@@ -187,41 +186,68 @@ void StrokeHandler::CheckValidDistance(Mouse& mouse){
         tempStartPos = canvasP->ConvertSPosToCPos(tempStartPos);
         tempEndPos = canvasP->ConvertSPosToCPos(tempEndPos);
 
+        Vector2 beforeRoundStart = tempStartPos.pos;
+        Vector2 beforeRoundEnd = tempEndPos.pos;
+
+        tempStartPos.pos.x = std::floor(tempStartPos.pos.x);
+        tempStartPos.pos.y = std::floor(tempStartPos.pos.y);
+        tempEndPos.pos.x = std::floor(tempEndPos.pos.x);
+        tempEndPos.pos.y = std::floor(tempEndPos.pos.y);
+
         float xDifference = tempEndPos.pos.x - tempStartPos.pos.x;
         float yDifference = tempEndPos.pos.y - tempStartPos.pos.y;
 
         float biggerDifference = std::max(std::abs(xDifference), std::abs(yDifference));
 
-        if(biggerDifference <= 1.0f){
-            continue;
-        }
+        if(biggerDifference < 1.0f) continue;
         else{
             newProcessingBuffer.push_back(point);
+            pointStart = point;
         }
+
+        /*
+        std::cout << "---------------" << std::endl;
+        std::cout << "Start Pos X:" << tempStartPos.pos.x << " Start Pos Y: " << tempStartPos.pos.y << std::endl;
+        std::cout << "End Pos X:" << tempEndPos.pos.x << " End Pos Y: " << tempEndPos.pos.y << std::endl;
+
+        std::cout << "Start Pos X:" << beforeRoundStart.x << " Start Pos Y: " << beforeRoundStart.y << std::endl;
+        std::cout << "End Pos X:" << beforeRoundEnd.x << " End Pos Y: " << beforeRoundEnd.y << std::endl;
+        */
     }
+    pathProcessingBuffer.clear();
     pathProcessingBuffer = newProcessingBuffer;
 }
 void StrokeHandler::MousePathStrokeInterpolation(Mouse& mouse){
     if(!mouse.isDrawing){
+        pathProcessingBuffer.clear();
         if(!activeStroke.strokeData.empty()){
+            std::cout << "before size: " << activeStroke.strokeData.size() << std::endl;
+            std::cout << "------------------" << std::endl;
+            std::cout << "------------------" << std::endl;
+            std::cout << "------------------" << std::endl;
+            if(activeStroke.strokeData.size() < 20){
+                for(auto& point : activeStroke.strokeData){
+                    //std::cout << "point pos X: " << point.pos.x << " --- point pos Y: " << point.pos.y << std::endl;
+                }
+            }
             canvasP->AddStroke(activeStroke);
             activeStroke.strokeData.clear();
-            pathProcessingBuffer.clear();
         }
         return;
     }
     std::vector<PathPoint> newPathPoints;
     if(mouse.mousePathBuffer.size() > 0){
         for(auto& pathPoint : mouse.mousePathBuffer){
+            PathPoint newPathPoint = pathPoint;
             pathProcessingBuffer.push_back(pathPoint);
         }
         mouse.mousePathBuffer.clear();
         if(pathProcessingBuffer.size() > 1){
-            //CheckValidDistance(mouse);
+            CheckValidDistance();
             if(pathProcessingBuffer.size() > 1){
                 ProcessBuffer();
                 //Meant for some weird point overlap
-                activeStroke.strokeData.pop_back();
+                //activeStroke.strokeData.pop_back();
             }
         }
     }
@@ -230,28 +256,32 @@ void StrokeHandler::IncreaseBrushSize(void){
     ++brushIndex;
     if(brushIndex > brushMaxSize) brushIndex = brushMaxSize;
     brushSize = brushSizes[brushIndex];
+    std::cout << "Brush Size: " << brushSize << std::endl;
 }
 void StrokeHandler::DecreaseBrushSize(void){
     --brushIndex;
     if(brushIndex < 0) brushIndex = 0;
     brushSize = brushSizes[brushIndex];
+    std::cout << "Brush Size: " << brushSize << std::endl;
 }
 void Canvas::CanvasReset(void){
     strokes.clear();
 }
 
-//Work with this shit
+//Position converting
 StrokePointData Canvas::ConvertSPosToCPos(StrokePointData& pointData){
     float canvasPosX = (pointData.pos.x - WINDOW_WIDTH / 2.0f) / camera->zoom + camera->pos.x;
     float canvasPosY = (pointData.pos.y - WINDOW_HEIGHT / 2.0f) / camera->zoom + camera->pos.y;
 
     Vector2 canvasPos = {canvasPosX, canvasPosY};
-
     Vector2 squarePos = canvasPos;
 
+    float newSize = pointData.size;
+    if(newSize <= 1) newSize = 0;
+
     //Drawn square screen offset
-    squarePos.x += WINDOW_WIDTH / 2.0f - pointData.size / 2.0f;
-    squarePos.y += WINDOW_HEIGHT / 2.0f - pointData.size / 2.0f;
+    squarePos.x += WINDOW_WIDTH / 2.0f - newSize / 2.0f;
+    squarePos.y += WINDOW_HEIGHT / 2.0f - newSize / 2.0f;
 
     return {squarePos.x, squarePos.y, pointData.size, pointData.penPressure};
 }
@@ -320,7 +350,6 @@ void CanvasInputHandler::ChangeBrushSize(void){
     }
     else if(IsKeyPressed(SDLK_D)){
         strokeHandler->DecreaseBrushSize();
-
     }
 }
 void CanvasInputHandler::Update(void){

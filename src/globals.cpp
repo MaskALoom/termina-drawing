@@ -7,8 +7,8 @@ Uint8 globalButtonReleased = 0;
 bool globalPenHeld = false;
 bool globalPenReleased = false;
 
-Color GetMonochromeColor(char value){
-    return {value, value, value, value};
+Color GetMonochromeColor(int value){
+    return {value, value, value, 255};
 }
 
 Color Fade(Color color, float fade){

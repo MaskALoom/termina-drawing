@@ -49,7 +49,7 @@ public:
         canvas.renderer = renderer;
         canvas.camera = &camera;
 
-        strokeHandler.Init(3, 0, 0.5f, &canvas);
+        strokeHandler.Init(8, 1, 0.5f, &canvas);
         canvas.strokeHandler = &strokeHandler;
         cInputHandler.Init(&canvas, &strokeHandler);
     }

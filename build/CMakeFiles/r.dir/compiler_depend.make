@@ -310,6 +310,7 @@ CMakeFiles/r.dir/src/canvas.cpp.o: /home/loom/Documents/C\ Projects/TerminaDrawi
   /usr/include/c++/13/bits/range_access.h \
   /usr/include/c++/13/bits/refwrap.h \
   /usr/include/c++/13/bits/requires_hosted.h \
+  /usr/include/c++/13/bits/specfun.h \
   /usr/include/c++/13/bits/std_abs.h \
   /usr/include/c++/13/bits/stl_algobase.h \
   /usr/include/c++/13/bits/stl_bvector.h \
@@ -332,6 +333,7 @@ CMakeFiles/r.dir/src/canvas.cpp.o: /home/loom/Documents/C\ Projects/TerminaDrawi
   /usr/include/c++/13/cctype \
   /usr/include/c++/13/cerrno \
   /usr/include/c++/13/clocale \
+  /usr/include/c++/13/cmath \
   /usr/include/c++/13/compare \
   /usr/include/c++/13/cstddef \
   /usr/include/c++/13/cstdio \
@@ -351,6 +353,7 @@ CMakeFiles/r.dir/src/canvas.cpp.o: /home/loom/Documents/C\ Projects/TerminaDrawi
   /usr/include/c++/13/iosfwd \
   /usr/include/c++/13/iostream \
   /usr/include/c++/13/istream \
+  /usr/include/c++/13/limits \
   /usr/include/c++/13/new \
   /usr/include/c++/13/ostream \
   /usr/include/c++/13/pstl/pstl_config.h \
@@ -359,6 +362,18 @@ CMakeFiles/r.dir/src/canvas.cpp.o: /home/loom/Documents/C\ Projects/TerminaDrawi
   /usr/include/c++/13/string \
   /usr/include/c++/13/string_view \
   /usr/include/c++/13/system_error \
+  /usr/include/c++/13/tr1/bessel_function.tcc \
+  /usr/include/c++/13/tr1/beta_function.tcc \
+  /usr/include/c++/13/tr1/ell_integral.tcc \
+  /usr/include/c++/13/tr1/exp_integral.tcc \
+  /usr/include/c++/13/tr1/gamma.tcc \
+  /usr/include/c++/13/tr1/hypergeometric.tcc \
+  /usr/include/c++/13/tr1/legendre_function.tcc \
+  /usr/include/c++/13/tr1/modified_bessel_func.tcc \
+  /usr/include/c++/13/tr1/poly_hermite.tcc \
+  /usr/include/c++/13/tr1/poly_laguerre.tcc \
+  /usr/include/c++/13/tr1/riemann_zeta.tcc \
+  /usr/include/c++/13/tr1/special_function_util.h \
   /usr/include/c++/13/tuple \
   /usr/include/c++/13/type_traits \
   /usr/include/c++/13/typeinfo \
@@ -370,6 +385,7 @@ CMakeFiles/r.dir/src/canvas.cpp.o: /home/loom/Documents/C\ Projects/TerminaDrawi
   /usr/include/features.h \
   /usr/include/linux/errno.h \
   /usr/include/locale.h \
+  /usr/include/math.h \
   /usr/include/pthread.h \
   /usr/include/sched.h \
   /usr/include/stdc-predef.h \
@@ -390,9 +406,18 @@ CMakeFiles/r.dir/src/canvas.cpp.o: /home/loom/Documents/C\ Projects/TerminaDrawi
   /usr/include/x86_64-linux-gnu/bits/errno.h \
   /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
   /usr/include/x86_64-linux-gnu/bits/floatn.h \
+  /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
+  /usr/include/x86_64-linux-gnu/bits/fp-fast.h \
+  /usr/include/x86_64-linux-gnu/bits/fp-logb.h \
+  /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
   /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+  /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
   /usr/include/x86_64-linux-gnu/bits/locale.h \
   /usr/include/x86_64-linux-gnu/bits/long-double.h \
+  /usr/include/x86_64-linux-gnu/bits/math-vector.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
   /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
@@ -1151,11 +1176,45 @@ CMakeFiles/r.dir/src/mouse.cpp.o: /home/loom/Documents/C\ Projects/TerminaDrawin
 
 /home/loom/Documents/C\ Projects/TerminaDrawing/src/globals.cpp:
 
+/usr/include/x86_64-linux-gnu/bits/mathcalls.h:
+
+/usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h:
+
+/usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h:
+
+/usr/include/x86_64-linux-gnu/bits/math-vector.h:
+
+/usr/include/x86_64-linux-gnu/bits/fp-logb.h:
+
+/usr/include/x86_64-linux-gnu/bits/fp-fast.h:
+
+/usr/include/c++/13/tr1/special_function_util.h:
+
+/usr/include/c++/13/tr1/riemann_zeta.tcc:
+
+/usr/include/c++/13/tr1/poly_laguerre.tcc:
+
+/usr/include/c++/13/tr1/poly_hermite.tcc:
+
+/usr/include/c++/13/tr1/modified_bessel_func.tcc:
+
+/usr/include/c++/13/tr1/legendre_function.tcc:
+
+/usr/include/c++/13/tr1/gamma.tcc:
+
+/usr/include/c++/13/tr1/exp_integral.tcc:
+
+/usr/include/c++/13/tr1/ell_integral.tcc:
+
+/usr/include/c++/13/tr1/beta_function.tcc:
+
 /usr/include/c++/13/array:
 
 /home/loom/Documents/C\ Projects/TerminaDrawing/include/canvas.hpp:
 
 /home/loom/Documents/C\ Projects/TerminaDrawing/src/canvas.cpp:
+
+/usr/include/c++/13/limits:
 
 /usr/local/include/SDL3/SDL_video.h:
 
@@ -1201,6 +1260,8 @@ CMakeFiles/r.dir/src/mouse.cpp.o: /home/loom/Documents/C\ Projects/TerminaDrawin
 
 /usr/include/endian.h:
 
+/usr/include/c++/13/bits/specfun.h:
+
 /usr/include/c++/13/bits/streambuf.tcc:
 
 /usr/include/c++/13/typeinfo:
@@ -1213,9 +1274,13 @@ CMakeFiles/r.dir/src/mouse.cpp.o: /home/loom/Documents/C\ Projects/TerminaDrawin
 
 /usr/include/c++/13/system_error:
 
+/usr/include/c++/13/tr1/hypergeometric.tcc:
+
 /usr/include/c++/13/bits/range_access.h:
 
 /usr/include/c++/13/ostream:
+
+/usr/include/x86_64-linux-gnu/bits/flt-eval-method.h:
 
 /usr/include/c++/13/bits/streambuf_iterator.h:
 
@@ -1228,6 +1293,8 @@ CMakeFiles/r.dir/src/mouse.cpp.o: /home/loom/Documents/C\ Projects/TerminaDrawin
 /usr/include/c++/13/istream:
 
 /usr/local/include/SDL3/SDL_storage.h:
+
+/usr/include/c++/13/tr1/bessel_function.tcc:
 
 /usr/include/c++/13/initializer_list:
 
@@ -1247,6 +1314,8 @@ CMakeFiles/r.dir/src/mouse.cpp.o: /home/loom/Documents/C\ Projects/TerminaDrawin
 
 /usr/include/c++/13/cstdlib:
 
+/usr/include/x86_64-linux-gnu/bits/iscanonical.h:
+
 /usr/include/c++/13/string_view:
 
 /usr/local/include/SDL3/SDL_atomic.h:
@@ -1256,6 +1325,8 @@ CMakeFiles/r.dir/src/mouse.cpp.o: /home/loom/Documents/C\ Projects/TerminaDrawin
 /usr/include/x86_64-linux-gnu/bits/errno.h:
 
 /usr/include/c++/13/bits/stl_pair.h:
+
+/usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:
 
@@ -1441,6 +1512,8 @@ CMakeFiles/r.dir/src/mouse.cpp.o: /home/loom/Documents/C\ Projects/TerminaDrawin
 
 /usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
 
+/usr/include/c++/13/cmath:
+
 /usr/local/include/SDL3/SDL_begin_code.h:
 
 /usr/include/ctype.h:
@@ -1512,6 +1585,8 @@ CMakeFiles/r.dir/src/mouse.cpp.o: /home/loom/Documents/C\ Projects/TerminaDrawin
 /usr/include/x86_64-linux-gnu/bits/timex.h:
 
 /usr/include/x86_64-linux-gnu/c++/13/bits/cpu_defines.h:
+
+/usr/include/math.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
 

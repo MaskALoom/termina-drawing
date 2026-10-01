@@ -6,6 +6,10 @@
 #define GREY (Color){200, 200, 200, 255}
 #define BLACK (Color){0, 0, 0, 255}
 #define WHITE (Color){255, 255, 255, 255}
+#define GREEN (Color){0, 255, 0, 255}
+#define BLUE (Color){0, 0, 255, 255}
+#define YELLOW (Color){255, 255, 0, 255}
+#define CYAN (Color){0, 255, 255, 255}
 
 #define WINDOW_WIDTH 1000
 #define WINDOW_HEIGHT 650
@@ -44,7 +48,7 @@ bool IsPenButtonReleased(void);
 Color Fade(Color color, float fade);
 
 void ResetGlobalKeysAndButtons(void);
-Color GetMonochromeColor(char value);
+Color GetMonochromeColor(int value);
 
 #endif
 
