@@ -96,10 +96,8 @@ Stroke StrokeHandler::GetActiveStroke(void){
 }
 
 //Code AI Written / Clean up / Unfuck this code from a previous written fuction
-void StrokeHandler::ProcessBuffer(void)
-{
+void StrokeHandler::ProcessBuffer(void){
     std::vector<PathPoint> newPathPoints;
-
     for (size_t index = 0; index + 1 < pathProcessingBuffer.size(); ++index){
         PathPoint pointStart = pathProcessingBuffer[index];
         PathPoint pointEnd   = pathProcessingBuffer[index + 1];
@@ -121,7 +119,7 @@ void StrokeHandler::ProcessBuffer(void)
         xDifference = pointEnd.pos.x - pointStart.pos.x;
         yDifference = pointEnd.pos.y - pointStart.pos.y;
 
-        if(biggerDifference <= 1.0f){
+        if(std::floor(biggerDifference) <= 1.0f){
             if(!activeStroke.strokeData.empty() && index == 0) continue;
 
             newPathPoints.push_back(pointStart);
@@ -142,7 +140,7 @@ void StrokeHandler::ProcessBuffer(void)
 
         //std::cout << "Difference: " << biggerDifference << std::endl;
 
-        for (int i = 0; i < std::floor(biggerDifference); ++i){
+        for (int i = 0; i < biggerDifference; ++i){
             if(!activeStroke.strokeData.empty() && i == 0) continue;
 
             float newX = pointStart.pos.x + xIncrement * i;
@@ -168,7 +166,8 @@ void StrokeHandler::ProcessBuffer(void)
 
         activeStroke.strokeData.push_back(newPoint);
     }
-    PathPoint lastBufferPoint = pathProcessingBuffer.back();
+    //Needed to know where the last point ended to continue the stroke order
+    PathPoint lastBufferPoint = newPathPoints.back();
     pathProcessingBuffer.clear();
     pathProcessingBuffer.push_back(lastBufferPoint);
 }
@@ -214,8 +213,14 @@ void StrokeHandler::CheckValidDistance(void){
         std::cout << "End Pos X:" << beforeRoundEnd.x << " End Pos Y: " << beforeRoundEnd.y << std::endl;
         */
     }
-    pathProcessingBuffer.clear();
     pathProcessingBuffer = newProcessingBuffer;
+    if(pathProcessingBuffer.size() > 1){
+        int index = 0;
+        for(auto& pathPoint : pathProcessingBuffer){
+            //std::cout << index << " = Start X: " << pathPoint.pos.x << " Start Y: " << pathPoint.pos.y << std::endl;
+            ++index;
+        }
+    }
 }
 void StrokeHandler::MousePathStrokeInterpolation(Mouse& mouse){
     if(!mouse.isDrawing){
@@ -227,7 +232,7 @@ void StrokeHandler::MousePathStrokeInterpolation(Mouse& mouse){
             std::cout << "------------------" << std::endl;
             if(activeStroke.strokeData.size() < 20){
                 for(auto& point : activeStroke.strokeData){
-                    //std::cout << "point pos X: " << point.pos.x << " --- point pos Y: " << point.pos.y << std::endl;
+                    std::cout << "point pos X: " << point.pos.x << " --- point pos Y: " << point.pos.y << std::endl;
                 }
             }
             canvasP->AddStroke(activeStroke);
