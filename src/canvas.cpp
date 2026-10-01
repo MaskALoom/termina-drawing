@@ -116,20 +116,49 @@ void StrokeHandler::ProcessBuffer(void){
 
         float biggerDifference = std::max(std::abs(xDifference), std::abs(yDifference));
 
+        int pixelDifference = std::floor(biggerDifference);
+
+        //suppose to combat pixel skipping when it comes to differences within the 1-2 pixel range, decimals are a bitch
+        if(std::abs(xDifference) == biggerDifference){
+            float checkNegative = tempEndPos.pos.x - tempStartPos.pos.x;
+            float newDifference = biggerDifference;
+
+            if(checkNegative < 0) newDifference *= -1;
+
+            float newPosX = tempStartPos.pos.x + newDifference;
+            float newPixelDifference = std::abs(std::floor(newPosX) - std::floor(tempStartPos.pos.x));
+            pixelDifference = newPixelDifference;
+        }
+        else{
+            float checkNegative = tempEndPos.pos.y - tempStartPos.pos.y;
+            float newDifference = biggerDifference;
+
+            if(checkNegative < 0) newDifference *= -1;
+
+            float newPosY = tempStartPos.pos.y + newDifference;
+            float newPixelDifference = std::abs(std::floor(newPosY) - std::floor(tempStartPos.pos.y));
+            pixelDifference = newPixelDifference;
+        }
+
         xDifference = pointEnd.pos.x - pointStart.pos.x;
         yDifference = pointEnd.pos.y - pointStart.pos.y;
 
         std::cout << "Difference: " << biggerDifference << std::endl;
 
-        if(biggerDifference <= 1.0f){
+        //if(biggerDifference <= 1.0f){
+        if(pixelDifference <= 1.0f){
             if(!activeStroke.strokeData.empty() && index == 0) continue;
 
             newPathPoints.push_back(pointStart);
             continue;
         }
         std::cout << "Interpolation TRIGGERED!" << std::endl;
-        std::cout << "Start X: " << pointStart.pos.x << " Start Y: " << pointStart.pos.y << std::endl;
-        std::cout << "End X: " << pointEnd.pos.x << " End Y: " << pointEnd.pos.y << std::endl;
+        if(pixelDifference == 2){
+            std::cout << "Pixel Difference: " << pixelDifference << std::endl;
+
+            std::cout << "Start X: " << tempStartPos.pos.x << " Start Y: " << tempStartPos.pos.y << std::endl;
+            std::cout << "End X: " << tempEndPos.pos.x << " End Y: " << tempEndPos.pos.y << std::endl;
+        }
 
         //newPathPoints.push_back(pointStart);
         //return;
@@ -232,7 +261,7 @@ void StrokeHandler::MousePathStrokeInterpolation(Mouse& mouse){
             std::cout << "------------------" << std::endl;
             if(activeStroke.strokeData.size() < 20){
                 for(auto& point : activeStroke.strokeData){
-                    std::cout << "point pos X: " << point.pos.x << " --- point pos Y: " << point.pos.y << std::endl;
+                    //std::cout << "point pos X: " << point.pos.x << " --- point pos Y: " << point.pos.y << std::endl;
                 }
             }
             canvasP->AddStroke(activeStroke);
