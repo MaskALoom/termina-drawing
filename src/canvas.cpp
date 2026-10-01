@@ -119,7 +119,9 @@ void StrokeHandler::ProcessBuffer(void){
         xDifference = pointEnd.pos.x - pointStart.pos.x;
         yDifference = pointEnd.pos.y - pointStart.pos.y;
 
-        if(std::floor(biggerDifference) <= 1.0f){
+        std::cout << "Difference: " << biggerDifference << std::endl;
+
+        if(biggerDifference <= 1.0f){
             if(!activeStroke.strokeData.empty() && index == 0) continue;
 
             newPathPoints.push_back(pointStart);
@@ -137,8 +139,6 @@ void StrokeHandler::ProcessBuffer(void){
 
         float pressureDifference = pointEnd.pressure - pointStart.pressure;
         float pressureIncrement = pressureDifference / biggerDifference;
-
-        //std::cout << "Difference: " << biggerDifference << std::endl;
 
         for (int i = 0; i < biggerDifference; ++i){
             if(!activeStroke.strokeData.empty() && i == 0) continue;
